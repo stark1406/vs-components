@@ -1,3 +1,3 @@
 <template>
-    <div>VUE COMPONENTS</div>
+  <h1>Добро пожаловать в VS-Components</h1>
 </template>

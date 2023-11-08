@@ -1,21 +1,62 @@
 <script setup lang="ts">
+import Header from '@/components/layout/Header.vue';
+import Sidebar from '@/components/layout/Sidebar.vue';
+import { ref } from 'vue'
+
+const isOpenMenu = ref<boolean>(false)
+
+function toggleMenu(): void {
+  isOpenMenu.value = !isOpenMenu.value
+}
 </script>
 
 <template>
-  <router-view/>
+  <div class="container">
+    <div
+      class="sidebar-toggle"
+      @click="toggleMenu"
+    >
+      &#5125;
+    </div>
+    <Header />
+    <Sidebar :is-open-side-bar="isOpenMenu" />
+    <div
+      :class="[
+        'content', 
+        {
+          content_full: !isOpenMenu
+        }
+      ]"
+    >
+      <router-view />
+    </div>
+  </div>
 </template>
 
-<style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+<style lang="scss" scoped>
+@import "./styles/global.scss";
+.content {
+  max-width: 1400px;
+  margin-left: 250px;
+  padding: 30px;
+  transition: .2s;
+  &_full {
+    margin-left: 0;
+  }
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
+
+.sidebar-toggle {
+  position: fixed;
+  left: 0;
+  width: 15px;
+  background-color: var(--primary-color);
+  height: 100%;
+  top: 62px;
+  z-index: 1;
+  cursor: pointer;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 </style>
