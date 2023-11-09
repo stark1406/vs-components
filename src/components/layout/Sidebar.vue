@@ -66,7 +66,7 @@ const links = ref<Array<Link>>([
     font-weight: bold;
     margin-bottom: 10px;
     &:hover {
-      border-color: var(--promary-color)
+      border-color: var(--primary)
     }
   }
 }

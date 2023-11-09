@@ -11,6 +11,7 @@ function toggleMenu(): void {
 </script>
 
 <template>
+  <Header />
   <div class="container">
     <div
       class="sidebar-toggle"
@@ -18,7 +19,6 @@ function toggleMenu(): void {
     >
       &#5125;
     </div>
-    <Header />
     <Sidebar :is-open-side-bar="isOpenMenu" />
     <div
       :class="[
@@ -36,9 +36,8 @@ function toggleMenu(): void {
 <style lang="scss" scoped>
 @import "./styles/global.scss";
 .content {
-  max-width: 1400px;
   margin-left: 250px;
-  padding: 30px;
+  padding: 50px;
   transition: .2s;
   &_full {
     margin-left: 0;
@@ -49,7 +48,7 @@ function toggleMenu(): void {
   position: fixed;
   left: 0;
   width: 15px;
-  background-color: var(--primary-color);
+  background-color: var(--primary);
   height: 100%;
   top: 62px;
   z-index: 1;
