@@ -1,11 +1,23 @@
 :root {
-  --primary-color: #6979f8;
-  --primary-color-hover: #a5affb;
-  --second-color: #be52f2;
+  --primary: #6979f8;
+  --primary-hover: #a5affb;
+  --secondary: #be52f2;
+  --secondary-hover: #dba5f5;
+  --success: #00C48C;
+  --success-hover: #7DDFC3;
+  --info: #0084F4;
+  --info-hover: #66B5f8;
+  --warning: #FFA268;
+  --warning-hover: #FFC7A6;
+  --danger: #FF647C;
+  --danger-hover: #FDAF88;
+  --surface-card: #ffffff;
+  --card-border: 1px solid #dfe7ef;
 }
 
 * {
   box-sizing: border-box;
+  font-family: Lato, sans-serif;
 }
 
 body {

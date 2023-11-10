@@ -6,7 +6,7 @@
   </header>
 </template>
 
-<style>
+<style lang="scss" scoped>
 .header {
   background: #fff;
   font-weight: bold;

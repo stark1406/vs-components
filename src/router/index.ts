@@ -1,7 +1,7 @@
 import { defineComponent } from 'vue';
 import { createRouter, createWebHistory } from 'vue-router'
 import index from "@/views/index.vue"
-import Button from '@/views/Button.vue'
+import Button from '@/views/button/default/Button.vue'
 
 interface Route {
   path: string;
