@@ -13,7 +13,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <div
+  <span
     :style="`height: ${height}; width: ${width};`"
     v-html="content"
   />

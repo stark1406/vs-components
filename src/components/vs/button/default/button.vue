@@ -2,9 +2,13 @@
 import { defineComponent, PropType } from 'vue'
 import { useButton } from '../setup'
 import type { color, type, size } from '../types'
+import { VsIcon } from '@vs/icon'
 
 export default defineComponent({
   name: 'VsButton',
+  components: {
+    VsIcon
+  },
   props: {
     label: {
       type: String,
@@ -62,10 +66,12 @@ export default defineComponent({
     :type="type"
     @click="clickOnButton"
   >
-    <span v-if="icon">
-      <font-awesome-icon :icon="`fa-regular fa-${icon}`" />
-    </span>
-    
+    <vs-icon
+      v-if="icon"
+      :name="icon"
+      height="20px"
+      width="20px"
+    />    
     <span v-else>{{ label }}</span>
   </button>
 </template>
@@ -141,6 +147,9 @@ export default defineComponent({
     width: 40px;
     height: 40px;
     border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   &_large {
     height: 48px;
