@@ -22,7 +22,11 @@ const links = ref<Array<Link>>([
   {
     name: 'Input',
     href: '/input'
-  }
+  },
+  {
+    name: 'Datepicker',
+    href: '/datepicker'
+  },
 ])
 </script>
 
