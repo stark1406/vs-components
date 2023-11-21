@@ -18,6 +18,10 @@ const links = ref<Array<Link>>([
   {
     name: 'Button',
     href: '/button'
+  },
+  {
+    name: 'Input',
+    href: '/input'
   }
 ])
 </script>

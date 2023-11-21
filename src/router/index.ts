@@ -2,6 +2,7 @@ import { defineComponent } from 'vue';
 import { createRouter, createWebHistory } from 'vue-router'
 const index = () => import("@/views/index.vue")
 const Button = () => import('@/views/button/default/Button.vue')
+const Input = () => import('@/views/input/default/Input.vue')
 
 interface Route {
   path: string;
@@ -19,6 +20,11 @@ const routes: Array<Route> = [
     path: '/button',
     name: 'Button',
     component: Button
+  },
+  {
+    path: '/input',
+    name: 'Input',
+    component: Input
   }
 ]
 
