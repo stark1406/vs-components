@@ -2,6 +2,7 @@
 import { ref } from 'vue'
 import { VsDatePicker } from '@/components/vs/datepicker'
 import { VsInput } from '@vs/input'
+import { VsCard } from '@vs/card'
 
 let valueDate = ref<string>('')
 
@@ -17,22 +18,22 @@ function updateValueDate(value: string) {
   <h2>
     Date-inline
   </h2>
-  <div
-    class="card"
-  >
-    <div class="date_inline">
-      <div class="calendar">
-        <vs-date-picker 
-          @update:value="updateValueDate"
+  <vs-card>
+    <div class="content">
+      <div class="date_inline">
+        <div class="calendar">
+          <vs-date-picker 
+            @update:value="updateValueDate"
+          />
+        </div>
+        <vs-input
+          v-model:value="valueDate"
+          label="Date:"
+          name="date"
         />
       </div>
-      <vs-input
-        v-model:value="valueDate"
-        label="Date:"
-        name="date"
-      />
     </div>
-  </div>
+  </vs-card>
 </template>
 
 <style lang="scss" scoped>
@@ -40,18 +41,12 @@ function updateValueDate(value: string) {
   border-left: 5px solid var(--primary);
   padding-left: 15px;
 }
-
-.card {
+.content {
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
-  gap: 1rem;
-  background: var(--surface-card);
-  border: var(--card-border);
-  border-radius: 10px;
-  margin-bottom: 1rem;
-  padding: 2rem;
+  min-width: 100%;
 }
+
 .date_inline {
   width: 280px;
 }

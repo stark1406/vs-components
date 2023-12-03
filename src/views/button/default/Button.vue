@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { VsButton } from '@/components/vs/button'
 import { templates } from '../data'
+import { VsCard } from '@vs/card'
 </script>
 
 <template>
@@ -14,25 +15,27 @@ import { templates } from '../data'
     <h2>
       {{ template.header }}
     </h2>
-    <div
-      class="card"
-    >
-      <div
-        v-for="(items, ind) in template.items"
-        :key="ind"
+    <vs-card>
+      <div 
+        class="content"
       >
-        <vs-button
-          :label="items.label"
-          :color="items.color"
-          :is-rounded="items.isRounded"
-          :is-disabled="items.isDisabled"
-          :is-outlined="items.isOutlined"
-          :icon="items.icon"
-          :size="items.size"
-          @click="items.click"
-        />
+        <div
+          v-for="(items, ind) in template.items"
+          :key="ind"
+        >
+          <vs-button
+            :label="items.label"
+            :color="items.color"
+            :is-rounded="items.isRounded"
+            :is-disabled="items.isDisabled"
+            :is-outlined="items.isOutlined"
+            :icon="items.icon"
+            :size="items.size"
+            @click="items.click"
+          />
+        </div>
       </div>
-    </div>
+    </vs-card>
   </div>
 </template>
 
@@ -41,16 +44,13 @@ import { templates } from '../data'
   border-left: 5px solid var(--primary);
   padding-left: 15px;
 }
-.card {
+.content {
   display: flex;
-  flex-wrap: wrap;
-  margin-bottom: 20px;
   justify-content: center;
-  gap: 1rem;
-  background: var(--surface-card);
-  border: var(--card-border);
-  border-radius: 10px;
-  margin-bottom: 1rem;
-  padding: 2rem;
+  flex-wrap: wrap;
+  min-width: 100%;
+  & > div {
+    margin: 10px;
+  }
 }
 </style>

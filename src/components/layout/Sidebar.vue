@@ -27,6 +27,10 @@ const links = ref<Array<Link>>([
     name: 'Datepicker',
     href: '/datepicker'
   },
+  {
+    name: 'Card',
+    href: '/card'
+  },
 ])
 </script>
 
