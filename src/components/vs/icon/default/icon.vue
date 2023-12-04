@@ -14,7 +14,7 @@ export default defineComponent({
 
 <template>
   <span
-    :style="`height: ${height}; width: ${width};`"
+    :style="`display: flex; height: ${height}; width: ${width};`"
     v-html="content"
   />
 </template>

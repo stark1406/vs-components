@@ -31,6 +31,10 @@ const links = ref<Array<Link>>([
     name: 'Card',
     href: '/card'
   },
+  {
+    name: 'Icon',
+    href: '/icon'
+  },
 ])
 </script>
 
