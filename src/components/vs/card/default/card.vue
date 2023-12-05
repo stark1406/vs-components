@@ -14,17 +14,17 @@ export default defineComponent({
 
 <template>
   <div
-    class="card"
+    class="vs-card"
     :style="styleCard"
   >
-    <div class="card_header">
+    <div class="vs-card_header">
       <div v-if="title">
         <div
           :class="[
-            'title',
+            'vs-title',
             {
-              'align_center': isAlignCenter,
-              'align_right': isAlignRight,
+              'vs-align_center': isAlignCenter,
+              'vs-align_right': isAlignRight,
             }
           ]"
         >
@@ -32,10 +32,10 @@ export default defineComponent({
         </div>
         <div
           :class="[
-            'subtitle',
+            'vs-subtitle',
             {
-              'align_center': isAlignCenter,
-              'align_right': isAlignRight,
+              'vs-align_center': isAlignCenter,
+              'vs-align_right': isAlignRight,
             }
           ]"
         >
@@ -47,14 +47,14 @@ export default defineComponent({
       />
     </div>
 
-    <div class="card_content">
+    <div class="vs-card_content">
       <div v-if="text">
         <div
           :class="[
-            'text',
+            'vs-text',
             {
-              'align_center': isAlignCenter,
-              'align_right': isAlignRight,
+              'vs-align_center': isAlignCenter,
+              'vs-align_right': isAlignRight,
             }
           ]"
         >
@@ -64,14 +64,14 @@ export default defineComponent({
       <slot />
     </div>
 
-    <div class="card_footer">
+    <div class="vs-card_footer">
       <div v-if="footer">
         <div
           :class="[
-            'footer',
+            'vs-footer',
             {
-              'align_center': isAlignCenter,
-              'align_right': isAlignRight,
+              'vs-align_center': isAlignCenter,
+              'vs-align_right': isAlignRight,
             }
           ]"
         >
@@ -84,28 +84,28 @@ export default defineComponent({
 </template>
 
 <style lang="scss" scoped>
-.card {
+.vs-card {
   background: var(--surface-card);
   border: var(--card-border);
   border-radius: 10px;
   padding: 2rem;
 }
 
-.card_header {
+.vs-card_header {
   margin-bottom: 10px;
 }
-.card_content {
+.vs-card_content {
   display: flex;
   @media screen and (max-width: 768px) {
     flex-direction: column;
   }
 }
 
-.card_footer {
+.vs-card_footer {
   margin-top: 10px;
 }
 
-.title {
+.vs-title {
   display: block;
   flex: none;
   font-size: 1.25rem;
@@ -123,15 +123,15 @@ export default defineComponent({
   word-wrap: break-word;
 }
 
-.align_center {
+.vs-align_center {
   text-align: center;
 }
 
-.align_right {
+.vs-align_right {
   text-align: right;
 }
 
-.subtitle {
+.vs-subtitle {
   display: block;
   flex: none;
   font-size: 0.875rem;
@@ -144,7 +144,7 @@ export default defineComponent({
   white-space: nowrap;
 }
 
-.text {
+.vs-text {
   font-size: 0.875rem;
   font-weight: 400;
   letter-spacing: 0.0178571429em;

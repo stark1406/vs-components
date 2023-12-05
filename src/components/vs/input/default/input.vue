@@ -14,28 +14,28 @@ export default defineComponent({
 
 <template>
   <div
-    class="form-input"
+    class="vs-form_input"
     :style="{
       width: width
     }"
   >
     <div
       :class="[
-        'content',
-        `content_${stylingMode}`
+        'vs-content',
+        `vs-content_${stylingMode}`
       ]"
     >
       <label
         :for="name"
-        class="input-label"
+        class="vs-input_label"
       >
         {{ label }}
       </label>
       <input
         :id="name"
         :class="[
-          'input',
-          `input_${stylingMode}`
+          'vs-input',
+          `vs-input_${stylingMode}`
         ]"
         :type="type"
         :value="value"
@@ -47,9 +47,9 @@ export default defineComponent({
         <div
           v-for="element of error"
           :key="element"
-          class="form-error"
+          class="vs-form_error"
         >
-          <div class="form-error__message">
+          <div class="vs-form_error__message">
             {{ element }}
           </div>
         </div>
@@ -59,19 +59,19 @@ export default defineComponent({
 </template>
 
 <style lang="scss" scoped>
-.content {
+.vs-content {
     display: flex;
     flex-direction: column;
     &_underlined {
       border-bottom: 1px solid #ddd;
     }
   }
-.form {
-  &-input {
+.vs-form {
+  &_input {
     margin-bottom: 30px;
     position: relative;
   }
-  &-error {
+  &_error {
     background: var(--danger);
     margin-top: 4px;
     border-radius: 7px;
@@ -80,7 +80,7 @@ export default defineComponent({
     padding: 5px;
   }
 }
-.input {
+.vs-input {
   padding: 0 10px;
   height: 40px;
   font-size: 15px;
@@ -98,7 +98,7 @@ export default defineComponent({
       border-bottom: 1px solid var(--primary);
     }
   }
-  &-label {
+  &_label {
     font-weight: bold;
     font-size: 13px;
     margin-bottom: 3px;

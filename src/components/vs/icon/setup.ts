@@ -1,14 +1,20 @@
-import { SetupContext, onMounted, ref } from 'vue'
+import { ref, watchEffect, computed } from 'vue'
 
-export function useIcon(props, ctx: SetupContext) {
+export function useIcon(props) {
   const content = ref<string>('');
 
-  onMounted(async () => {
+  watchEffect(async () => {
     const response: Response = await fetch(`/src/assets/icons/${props.name}.svg`);
     const text: string = await response.text();
     content.value = text
-  });
+  })
+
+  const styleIcon = computed(() => {
+    return `height: ${props.height}; width: ${props.width};`
+  })
+
   return {
-    content
+    content,
+    styleIcon
   }
 }

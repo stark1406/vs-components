@@ -19,17 +19,17 @@ export default defineComponent({
 <template>
   <div
     :class="[
-      'main',
+      'vs-main',
       {
-        'main_disabled': disabled
+        'vs-main_disabled': disabled
       }
     ]"
   >
     <div
-      class="content_toolbar"
+      class="vs-content_toolbar"
     >
       <button
-        class="btn_get"
+        class="vs-btn_get"
         @click="getPreviousToolbar"
       >
         <vs-icon
@@ -39,13 +39,13 @@ export default defineComponent({
         />
       </button>
       <button 
-        class="btn_selected"
+        class="vs-btn_selected"
         @click="selectedHeaderToolbar"
       >
         {{ headerToolbar }}
       </button>
       <button
-        class="btn_get"
+        class="vs-btn_get"
         @click="getNextToolbar"
       >
         <vs-icon
@@ -63,7 +63,7 @@ export default defineComponent({
 
     <div
       v-if="view === 'day'"
-      class="row_weekdays row_day"
+      class="vs-row_weekdays vs-row_day"
     >
       <div
         v-for="day in weekdays"
@@ -73,15 +73,15 @@ export default defineComponent({
       </div>
     </div>
 
-    <div class="content_calendar">
+    <div class="vs-content_calendar">
       <div
         v-for="(items, index) in datas"
         :key="index"
         :class="[
-          'row',
+          'vs-row',
           {
-            'row_day': view === 'day',
-            'row_month_year': view !== 'day'
+            'vs-row_day': view === 'day',
+            'vs-row_month_year': view !== 'day'
           }
         ]"
       >
@@ -90,19 +90,19 @@ export default defineComponent({
           :key="ind"
           :data-date="item"
           :class="[
-            'btn', 
+            'vs-btn', 
             {
-              'btn_ecluded': !isExcluded(item),
-              'btn_current': isCurrent(item),
+              'vs-btn_ecluded': !isExcluded(item),
+              'vs-btn_current': isCurrent(item),
             }
           ]"
           @click="selectItem(item)"
         >
           <span 
             :class="[
-              'span',
+              'vs-span',
               {
-                'span_selected': isSelected(item)
+                'vs-span_selected': isSelected(item)
               }
             ]"
           >
@@ -115,7 +115,7 @@ export default defineComponent({
 </template>
 
 <style lang="scss" scoped>
-.main {
+.vs-main {
   display: flex;
   flex-direction: column;
   height: 280px;
@@ -125,13 +125,13 @@ export default defineComponent({
     opacity: 0.4;
   }
 }
-.content_toolbar {
+.vs-content_toolbar {
   display: flex;
   justify-content: space-between;
   margin-bottom: 6px;
 }
 
-.btn_get {
+.vs-btn_get {
   display: flex;
   padding: 4px;
   color: rgb(156 163 175);
@@ -140,7 +140,7 @@ export default defineComponent({
   }
 }
 
-.btn_selected {
+.vs-btn_selected {
   flex: 1 1 auto;
   font-weight: 600;
   font-size: 14px;
@@ -152,7 +152,7 @@ export default defineComponent({
   }
 }
 
-.row_weekdays {
+.vs-row_weekdays {
   display: grid;
   & > div {
     text-align: center;
@@ -164,14 +164,14 @@ export default defineComponent({
   }
 }
 
-.content_calendar {
+.vs-content_calendar {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
   background-color: rgb(255 255 255);
 }
 
-.row {
+.vs-row {
   flex-grow: 1;
   display: grid;
   &_day {
@@ -182,7 +182,7 @@ export default defineComponent({
   }
 }
 
-.btn {
+.vs-btn {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -212,7 +212,7 @@ export default defineComponent({
   }
 }
 
-.span {
+.vs-span {
   display: flex;
   justify-content: center;
   align-items: center;

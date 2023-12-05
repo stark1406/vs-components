@@ -1,13 +1,18 @@
 <script setup lang="ts">
+import { ref, computed } from 'vue'
 import Header from '@/components/layout/Header.vue';
 import Sidebar from '@/components/layout/Sidebar.vue';
-import { ref } from 'vue'
+import { VsIcon } from '@vs/icon'
 
 const isOpenMenu = ref<boolean>(false)
 
 function toggleMenu(): void {
   isOpenMenu.value = !isOpenMenu.value
 }
+
+const iconName = computed(() => {
+  return isOpenMenu.value ? 'chevron-left' : 'chevron-right'
+})
 </script>
 
 <template>
@@ -17,7 +22,9 @@ function toggleMenu(): void {
       class="sidebar-toggle"
       @click="toggleMenu"
     >
-      &#5125;
+      <vs-icon 
+        :name="iconName"
+      />
     </div>
     <Sidebar :is-open-side-bar="isOpenMenu" />
     <div
@@ -42,6 +49,9 @@ function toggleMenu(): void {
   &_full {
     margin-left: 0;
   }
+  @media screen and (max-width: 768px) {
+    margin-left: 0;
+  }
 }
 
 .sidebar-toggle {
@@ -51,7 +61,7 @@ function toggleMenu(): void {
   background-color: var(--primary);
   height: 100%;
   top: 62px;
-  z-index: 1;
+  z-index: 11;
   cursor: pointer;
   color: #fff;
   display: flex;

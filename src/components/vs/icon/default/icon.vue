@@ -6,16 +6,22 @@ import { useIcon } from '../setup'
 export default defineComponent({
   name: 'VsIcon',
   extends: IconContract,
-  setup(props, ctx) {
-    return useIcon(props, ctx)
+  setup(props) {
+    return useIcon(props)
   },
 })
 </script>
 
 <template>
   <span
-    :style="`display: flex; height: ${height}; width: ${width};`"
+    class="vs-span"
+    :style="styleIcon"
     v-html="content"
   />
 </template>
-  
+
+<style lang="scss" scoped>
+.vs-span {
+  display: flex;
+}
+</style>

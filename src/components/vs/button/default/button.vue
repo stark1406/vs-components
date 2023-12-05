@@ -53,13 +53,13 @@ export default defineComponent({
 <template>
   <button
     :class="[
-      'btn', 
-      `btn_${color}`,
+      'vs-btn', 
+      `vs-btn_${color}`,
       {
-        'btn_rounded' : isRounded,
-        'btn_outlined' : isOutlined,
-        'btn_icon' : icon,
-        'btn_large' : size === 'large',
+        'vs-btn_rounded' : isRounded,
+        'vs-btn_outlined' : isOutlined,
+        'vs-btn_icon' : icon,
+        'vs-btn_large' : size === 'large',
       }
     ]"
     :disabled="isDisabled"
@@ -77,7 +77,7 @@ export default defineComponent({
 </template>
 
 <style lang="scss" scoped>
-.btn {
+.vs-btn {
   padding: 0 20px;
   height: 40px;
   color: #fff;
