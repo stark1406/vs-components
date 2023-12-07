@@ -1,14 +1,11 @@
-import { ref } from 'vue'
-import MainService from './services/MainServices'
-import ToolbarServices from './services/ToolbarServices'
-import DaysService from './services/DaysServices'
-import MonthService from './services/MonthServices'
-import YearService from './services/YearServices'
+import { ref, provide } from 'vue'
+import { DaysService, MainService, MonthService, ToolbarService, YearService } from './services'
+import { TODAY_FROM_MAIN, SELECT_DATE_FROM_MAIN, CLEAR_DATE_FROM_MAIN } from './injectKey'
 import type { Datas, Item, MonthItem } from './types'
 
 export function useDatepicker(props) {
   const mainService = new MainService()
-  const toolbarServices = new ToolbarServices()
+  const toolbarServices = new ToolbarService()
   const daysService = new DaysService()
   const monthService = new MonthService()
   const yearService = new YearService()
@@ -16,7 +13,7 @@ export function useDatepicker(props) {
   const type = ref<string>(props.type)
   const view = ref<string>('day')
 
-  const selectedDate = ref<string>('')
+  const selectedDate = ref<string>(props.modelValue)
   const currentDate = ref<Date>(getCurrentDate())
 
   const datas = ref<Datas>(getDatas(currentDate.value))
@@ -24,8 +21,14 @@ export function useDatepicker(props) {
   const headerToolbar = ref<string>(getHeaderToolbar())
 
   function getCurrentDate(): Date {
-    const date: Date = new Date()
+    let date: Date = new Date()
 
+    if(props.modelValue) {
+      const formattedDate = mainService.formatDate(props.modelValue)
+      if(formattedDate instanceof Date) {
+        date = formattedDate
+      }
+    }
     return date
   }
 
@@ -149,8 +152,13 @@ export function useDatepicker(props) {
 
   function selectItem(item: Date | MonthItem | number): void {
     if (daysService.isDay(view.value, item)) {
-      selectedDate.value = mainService.formatDate(item, props.displayFormat)
-      props.updateValue(selectedDate.value)
+      const formattedDate = mainService.formatDate(item, props.displayFormat)
+      if(typeof formattedDate === 'string') {
+        selectedDate.value = formattedDate
+        if(!props.showSelectButton) {
+          selectDate()
+        }
+      }
     }
 
     if (monthService.isMonth(view.value, item)) {
@@ -167,6 +175,29 @@ export function useDatepicker(props) {
 
     headerToolbar.value = getHeaderToolbar()
   }
+
+  function today(): void {
+    view.value = 'day'
+    currentDate.value = new Date()
+    datas.value = daysService.getDays(currentDate.value)
+    headerToolbar.value = getHeaderToolbar()
+  }
+
+  provide(TODAY_FROM_MAIN, today)
+
+  function selectDate(): void {
+    props.updateValue(selectedDate.value)
+  }
+
+  provide(SELECT_DATE_FROM_MAIN, selectDate)
+
+  function clearDate(): void {
+    today()
+    selectedDate.value = ''
+    selectDate()
+  }
+
+  provide(CLEAR_DATE_FROM_MAIN, clearDate)
 
   return {
     headerToolbar,

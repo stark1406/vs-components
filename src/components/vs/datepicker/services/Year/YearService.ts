@@ -1,27 +1,40 @@
-import type { Item } from '../types'
+import { YearContract } from './YearContract'
+import type { Item } from '../../types'
 
-export default class YearService {
+export default class YearService extends YearContract{
   getYearMatrix(year: number): number[][] {
     const numberAsString = year.toString()
     const startYear = parseFloat(numberAsString.slice(0, -1) + '0') - 1
     const endYear = startYear + 15
-    const yearMatrix: number[] = []
 
-    for (let year = startYear; year <= endYear; year++) {
-      yearMatrix.push(year)
-    }
-
+    const yearMatrix = this.generateYearArray(startYear, endYear)
     const numberOfSubArrays = 4
-    const subArraySize = yearMatrix.length / numberOfSubArrays
-    const subArrays: number[][] = []
+    const subArrays = this.splitArrayIntoSubArrays(yearMatrix, numberOfSubArrays)
 
+    return subArrays
+  }
+
+  private generateYearArray(startYear: number, endYear: number): number[] {
+    const yearArray: number[] = []
+  
+    for (let year = startYear; year <= endYear; year++) {
+      yearArray.push(year)
+    }
+  
+    return yearArray
+  }
+  
+  private splitArrayIntoSubArrays(array: number[], numberOfSubArrays: number): number[][] {
+    const subArraySize = array.length / numberOfSubArrays
+    const subArrays: number[][] = []
+  
     for (let i = 0; i < numberOfSubArrays; i++) {
       const start = i * subArraySize
       const end = start + subArraySize
-
-      subArrays.push(yearMatrix.slice(start, end))
+  
+      subArrays.push(array.slice(start, end))
     }
-
+  
     return subArrays
   }
 

@@ -1,6 +1,7 @@
-import type { MonthMatrix, MonthItem, Item } from '../types'
+import { MonthContract } from './MonthContract'
+import type { MonthMatrix, MonthItem, Item } from '../../types'
 
-export default class MonthService {
+export default class MonthService extends MonthContract {
   month: MonthMatrix = [
       [
         { name: 'январь', number: 0, currentYear: true },

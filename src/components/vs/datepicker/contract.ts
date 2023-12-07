@@ -3,6 +3,10 @@ import type { Variant, Type, DisplayFormat } from './types'
 
 export const DatepickerContract = defineComponent({
   props: {
+    modelValue: {
+      type: String,
+      default: '',
+    },
     variant: {
       type: String as PropType<Variant>,
       default: 'inline',
@@ -26,6 +30,18 @@ export const DatepickerContract = defineComponent({
     updateValue: {
       type: Function,
       default: undefined,
+    },
+    showTodayButton: {
+      type: Boolean,
+      default: false,
+    },
+    showSelectButton: {
+      type: Boolean,
+      default: false,
+    },
+    showClearButton: {
+      type: Boolean,
+      default: false,
     },
   },
   

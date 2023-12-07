@@ -1,4 +1,6 @@
-export default class ToolbarServices {
+import { ToolbarContract } from "./ToolbarContract"
+
+export default class ToolbarService extends ToolbarContract {
   getHeaderDay(date: Date): string {
     const year = date.getFullYear()
 

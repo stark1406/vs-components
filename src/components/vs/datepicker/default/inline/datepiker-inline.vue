@@ -3,11 +3,13 @@ import { defineComponent } from 'vue'
 import { useDatepicker } from '../../setup'
 import { DatepickerContract } from '../../contract'
 import { VsIcon } from '@/components/vs/icon'
+import { ActionButtons } from '../../components/action-buttons'
 
 export default defineComponent({
   name: 'DatepikerInline',
   components: {
-    VsIcon
+    VsIcon,
+    ActionButtons
   },
   extends: DatepickerContract,
   setup(props) {
@@ -111,6 +113,13 @@ export default defineComponent({
         </button>
       </div>
     </div>
+
+    <action-buttons
+      v-if="showTodayButton || showSelectButton || showClearButton"
+      :is-today="showTodayButton"
+      :is-select="showSelectButton"
+      :is-clear="showClearButton"
+    />
   </div>
 </template>
 
@@ -118,8 +127,8 @@ export default defineComponent({
 .vs-main {
   display: flex;
   flex-direction: column;
-  height: 280px;
-  width: 280px;
+  height: 300px;
+  width: 300px;
   &_disabled {
     pointer-events: none;
     opacity: 0.4;
@@ -221,7 +230,6 @@ export default defineComponent({
   &_selected {
     color: #fff;
     background-color: var(--primary);
-    border-radius: 9999px;
   }
 }
 </style>

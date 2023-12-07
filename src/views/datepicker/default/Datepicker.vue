@@ -4,7 +4,7 @@ import { VsDatePicker } from '@/components/vs/datepicker'
 import { VsInput } from '@vs/input'
 import { VsCard } from '@vs/card'
 
-let valueDate = ref<string>('')
+let valueDate = ref<string>('12.12.2034')
 
 function updateValueDate(value: string) {
   valueDate.value = value
@@ -22,13 +22,17 @@ function updateValueDate(value: string) {
     <div class="content">
       <div class="date_inline">
         <div class="calendar">
-          <vs-date-picker 
+          <vs-date-picker
+            :model-value="valueDate"
+            :show-today-button="true"
+            :show-select-button="true"
+            :show-clear-button="true"
             @update:value="updateValueDate"
           />
         </div>
         <vs-input
           v-model:value="valueDate"
-          label="Date:"
+          label="Model value:"
           name="date"
         />
       </div>
