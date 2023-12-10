@@ -14,10 +14,6 @@ export const icons: Icons[] = [
     text: 'hourglass',
   },
   {
-    name: 'lemon',
-    text: 'lemon',
-  },
-  {
     name: 'credit-card',
     text: 'credit-card',
   },
@@ -30,7 +26,23 @@ export const icons: Icons[] = [
     text: 'chevron-right',
   },
   {
+    name: 'chevron-up',
+    text: 'chevron-up',
+  },
+  {
+    name: 'chevron-down',
+    text: 'chevron-down',
+  },
+  {
+    name: 'lemon',
+    text: 'lemon',
+  },
+  {
     name: 'address-book',
     text: 'address-book',
-  }
+  },
+  {
+    name: 'code',
+    text: 'code',
+  },
 ]

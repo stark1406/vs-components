@@ -47,22 +47,20 @@ export default defineComponent({
       />
     </div>
 
-    <div class="vs-card_content">
-      <div v-if="text">
-        <div
-          :class="[
-            'vs-text',
-            {
-              'vs-align_center': isAlignCenter,
-              'vs-align_right': isAlignRight,
-            }
-          ]"
-        >
-          {{ text }}
-        </div>
+    <div v-if="text">
+      <div
+        :class="[
+          'vs-text',
+          {
+            'vs-align_center': isAlignCenter,
+            'vs-align_right': isAlignRight,
+          }
+        ]"
+      >
+        {{ text }}
       </div>
-      <slot />
     </div>
+    <slot />
 
     <div class="vs-card_footer">
       <div v-if="footer">
@@ -93,12 +91,6 @@ export default defineComponent({
 
 .vs-card_header {
   margin-bottom: 10px;
-}
-.vs-card_content {
-  display: flex;
-  @media screen and (max-width: 768px) {
-    flex-direction: column;
-  }
 }
 
 .vs-card_footer {
