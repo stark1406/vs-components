@@ -3,8 +3,10 @@ export interface Icons {
   text: string
 }
 
-export interface Icon {
+interface Icon {
   name: string,
   width: string,
   height: string,
 }
+
+export type Default = Pick<Icon, keyof Icon>

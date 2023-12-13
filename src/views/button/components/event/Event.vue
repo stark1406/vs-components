@@ -1,31 +1,32 @@
 <script lang="ts" setup>
-import { VsIcon } from '@vs/icon'
-import { icons } from '../data'
+import { VsButton } from '@vs/button'
+import type { Event } from '../types'
 import WidgetCodeView from '@widgets/CodeView/WidgetCodeView.vue'
-import type { Default } from '../types'
 
-const attributes: Default[] = [
+const attributes: Event[] = [
   {
-    name: 'heart',
-    width: '30px',
-    height: '30px',
-  }
+    label: 'Click',
+    "@click": '...'
+  },
 ]
+
+const clickBtn = () => {
+  alert('Welcome VS-components');
+}
 </script>
 
 <template>
   <h2>
-    Default
+    Event
   </h2>
   <widget-code-view
-    component="icon"
+    component="button"
     :attributes="attributes"
   >
     <div class="content">
-      <vs-icon
-        :name="icons[0].name"
-        height="30px"
-        width="30px"
+      <vs-button
+        label="Click"
+        @click="clickBtn"
       />
     </div>
   </widget-code-view>
@@ -35,6 +36,7 @@ const attributes: Default[] = [
 .content {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
   min-width: 100%;
 }
 </style>

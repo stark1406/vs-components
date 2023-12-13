@@ -127,7 +127,7 @@ export default defineComponent({
 .vs-main {
   display: flex;
   flex-direction: column;
-  height: 300px;
+  height: 350px;
   width: 300px;
   &_disabled {
     pointer-events: none;
