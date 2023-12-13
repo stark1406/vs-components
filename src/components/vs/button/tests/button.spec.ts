@@ -19,7 +19,7 @@ describe('Button', async () => {
 
       const button = wrapper.find('button')
 
-      expect(button.classes('btn_' + colors[i])).toBe(true)
+      expect(button.classes('vs-btn_' + colors[i])).toBe(true)
     }
   })
 
@@ -46,7 +46,7 @@ describe('Button', async () => {
 
     const button = wrapper.find('button')
 
-    expect(button.classes('btn_rounded')).toBe(true)
+    expect(button.classes('vs-btn_rounded')).toBe(true)
   })
 
   it('props: isOutlined', async () => {
@@ -58,7 +58,7 @@ describe('Button', async () => {
 
     const button = wrapper.find('button')
 
-    expect(button.classes('btn_outlined')).toBe(true)
+    expect(button.classes('vs-btn_outlined')).toBe(true)
   })
 
   it('props: type', async () => {
@@ -86,7 +86,7 @@ describe('Button', async () => {
       if(sizes[i] === 'large') {
         const button = wrapper.find('button')
 
-        expect(button.classes('btn_' + sizes[i])).toBe(true)
+        expect(button.classes('vs-btn_' + sizes[i])).toBe(true)
       }
     }
   })
