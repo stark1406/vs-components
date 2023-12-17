@@ -11,7 +11,7 @@ const attributes: Event[] = [
 ]
 
 const clickBtn = () => {
-  alert('Welcome VS-components');
+  alert('Welcome VS-components')
 }
 </script>
 

@@ -45,7 +45,7 @@ export default class MonthService extends MonthContract {
 
   isMonth(view: string, item?: Item): item is MonthItem {
     if(item) {
-      return view === 'month' && typeof item !== 'number' && 'name' in item && 'number' in item && 'currentYear' in item;
+      return view === 'month' && typeof item !== 'number' && 'name' in item && 'number' in item && 'currentYear' in item
     }
 
     return view === 'month'

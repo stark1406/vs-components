@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
-import Header from '@/components/layout/Header.vue';
-import Sidebar from '@/components/layout/Sidebar.vue';
+import Header from '@/components/layout/Header.vue'
+import Sidebar from '@/components/layout/Sidebar.vue'
 import { VsIcon } from '@vs/icon'
 
 const isOpenMenu = ref<boolean>(false)

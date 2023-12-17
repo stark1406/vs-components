@@ -51,7 +51,7 @@ export default class generatorCode {
   }
   
   private generateTab(count: number = 1): string {
-    return '\t'.repeat(count);
+    return '\t'.repeat(count)
   }
 
   private generateTemplate(body: string, slot: string = ''): string {

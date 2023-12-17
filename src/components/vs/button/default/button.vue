@@ -37,7 +37,7 @@ export default defineComponent({
       :name="icon"
       height="20px"
       width="20px"
-    />    
+    />
     <span v-else>{{ label }}</span>
   </button>
 </template>

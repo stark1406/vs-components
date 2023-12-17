@@ -104,8 +104,8 @@ describe('Button', async () => {
   })
 
   it('event click', async () => {
-    await wrapper.trigger('click');
+    await wrapper.trigger('click')
 
-    expect(wrapper.emitted().click).toBeTruthy();
+    expect(wrapper.emitted().click).toBeTruthy()
   })
 })

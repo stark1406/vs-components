@@ -45,4 +45,12 @@ export const icons: Icons[] = [
     name: 'code',
     text: 'code',
   },
+  {
+    name: 'check-mark',
+    text: 'check-mark',
+  },
+  {
+    name: 'clone-copy',
+    text: 'clone-copy',
+  },
 ]

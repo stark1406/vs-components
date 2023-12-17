@@ -36,5 +36,5 @@ export const ButtonContract = defineComponent({
       default: 'normal'
     }
   },
-  emits: [ 'click' ],
+  emits: ['click'],
 })
