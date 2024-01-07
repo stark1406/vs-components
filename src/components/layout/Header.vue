@@ -15,7 +15,7 @@
   height: 62px;
   display: flex;
   align-items: center;
-  z-index: 12;
+  z-index: 3002;
   position: sticky;
   top: 0
 }

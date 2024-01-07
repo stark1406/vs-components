@@ -35,6 +35,10 @@ const links = ref<Array<Link>>([
     name: 'Icon',
     href: '/icon'
   },
+  {
+    name: 'Popper',
+    href: '/popper'
+  }
 ])
 </script>
 
@@ -79,7 +83,8 @@ const links = ref<Array<Link>>([
   transition: 0.2s;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.07);
   transform: translateX(-250px);
-  z-index: 10;
+  z-index: 3000;
+  overflow: auto;
   &_isopen {
     transform: translateX(0px);
   }

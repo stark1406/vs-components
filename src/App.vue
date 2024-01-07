@@ -61,7 +61,7 @@ const iconName = computed(() => {
   background-color: var(--primary);
   height: 100%;
   top: 62px;
-  z-index: 11;
+  z-index: 3001;
   cursor: pointer;
   color: #fff;
   display: flex;

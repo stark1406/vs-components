@@ -4,6 +4,7 @@ const Input = () => import('@/views/input/default/Input.vue')
 const Datepicker = () => import('@/views/datepicker/default/Datepicker.vue')
 const Card = () => import('@/views/card/default/Card.vue')
 const Icon = () => import('@/views/icon/default/Icon.vue')
+const Popper = () => import('@/views/popper/default/Popper.vue')
 
 export const components = [
   {
@@ -35,5 +36,10 @@ export const components = [
     path: '/icon',
     name: 'Icon',
     component: Icon
+  },
+  {
+    path: '/popper',
+    name: 'Popper',
+    component: Popper
   }
 ]
