@@ -1,0 +1,1 @@
+export { default as VsSelect } from './default/select.vue'

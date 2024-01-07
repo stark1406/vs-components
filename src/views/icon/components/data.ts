@@ -53,4 +53,8 @@ export const icons: Icons[] = [
     name: 'clone-copy',
     text: 'clone-copy',
   },
+  {
+    name: 'cross-delete',
+    text: 'cross-delete',
+  },
 ]

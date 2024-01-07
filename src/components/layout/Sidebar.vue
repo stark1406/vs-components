@@ -38,6 +38,10 @@ const links = ref<Array<Link>>([
   {
     name: 'Popper',
     href: '/popper'
+  },
+  {
+    name: 'Select',
+    href: '/select'
   }
 ])
 </script>
