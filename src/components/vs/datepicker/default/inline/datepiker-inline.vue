@@ -41,7 +41,7 @@ export default defineComponent({
         />
       </button>
       <button 
-        class="vs-btn_selected"
+        class="vs-btn_selected_header"
         @click="selectedHeaderToolbar"
       >
         {{ headerToolbar }}
@@ -92,21 +92,17 @@ export default defineComponent({
           :key="ind"
           :data-date="item"
           :class="[
-            'vs-btn', 
+            'vs-btn',
             {
               'vs-btn_ecluded': !isExcluded(item),
               'vs-btn_current': isCurrent(item),
+              'vs-btn_selected': isSelected(item),
             }
           ]"
           @click="selectItem(item)"
         >
-          <span 
-            :class="[
-              'vs-span',
-              {
-                'vs-span_selected': isSelected(item)
-              }
-            ]"
+          <span
+            class="vs-span"
           >
             {{ getValue(item) }}
           </span>
@@ -149,7 +145,7 @@ export default defineComponent({
   }
 }
 
-.vs-btn_selected {
+.vs-btn_selected_header {
   flex: 1 1 auto;
   font-weight: 600;
   font-size: 14px;
@@ -199,6 +195,7 @@ export default defineComponent({
   font-size: 0.875rem;
   line-height: 1.25rem;
   &:enabled:hover {
+    color: #000;
     background-color: rgb(241 245 249);
   }
   &_ecluded {
@@ -219,6 +216,10 @@ export default defineComponent({
   &_right_bottom {
     border-bottom-right-radius: 0.5rem;
   }
+  &_selected {
+    color: #fff;
+    background-color: var(--primary);
+  }
 }
 
 .vs-span {
@@ -227,9 +228,5 @@ export default defineComponent({
   align-items: center;
   height: 28px;
   width: 28px;
-  &_selected {
-    color: #fff;
-    background-color: var(--primary);
-  }
 }
 </style>

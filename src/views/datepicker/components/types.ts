@@ -1,5 +1,5 @@
 interface Date {
-  'model-value': string,
+  'v-model:value': string,
   variant: string,
   disabled: string,
   type: string,
@@ -11,4 +11,6 @@ interface Date {
   'show-clear-button': boolean,
 }
 
-export type DateInline = Pick<Date, "model-value" | "show-today-button" | "show-select-button" | "show-clear-button" | "@update:value">
+export type DateInline = Pick<Date, "v-model:value" | "show-today-button" | "show-select-button" | "show-clear-button">
+export type MonthInline = Pick<Date, "v-model:value" | "type">
+export type YearInline = Pick<Date, "v-model:value" | "type">

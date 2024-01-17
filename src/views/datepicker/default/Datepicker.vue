@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { DateInline } from '../components'
+import { DateInline, MonthInline, YearInline } from '../components'
 </script>
 
 <template>
@@ -7,6 +7,8 @@ import { DateInline } from '../components'
     Datepicker
   </h1>
   <date-inline />
+  <month-inline />
+  <year-inline />
 </template>
 
 <style lang="scss" scoped>

@@ -1,9 +1,12 @@
 import { defineComponent, PropType } from 'vue'
 import type { Variant, Type, DisplayFormat } from './types'
+import { MainService } from './services'
+
+const mainService = new MainService()
 
 export const DatepickerContract = defineComponent({
   props: {
-    modelValue: {
+    value: {
       type: String,
       default: '',
     },
@@ -25,7 +28,9 @@ export const DatepickerContract = defineComponent({
     },
     displayFormat: {
       type: String as PropType<DisplayFormat>,
-      default: 'DD/MM/YYYY',
+      default(rawProps: object) {
+        return mainService.getDisplayFormat(rawProps.displayFormat, rawProps.type)
+      }
     },
     updateValue: {
       type: Function,
@@ -44,5 +49,4 @@ export const DatepickerContract = defineComponent({
       default: false,
     },
   },
-  
 })

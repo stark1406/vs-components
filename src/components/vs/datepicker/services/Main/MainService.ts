@@ -2,20 +2,40 @@ import { MainContract } from './MainContract'
 import type { DateFormatOptions, DisplayFormat } from '../../types'
 
 export default class MainService extends MainContract {
-  formatDate(date: Date | string, displayFormat: DisplayFormat = 'DD/MM/YYYY'): Date | string {
+  formatDate(date: Date | string, displayFormat: DisplayFormat = 'DD/MM/YYYY', view: string = 'day'): Date | string {
     if (!(date instanceof Date)) {
-      return this.getDate(date)
+      return this.getDate(date, view)
     }
     return this.getDateString(date, displayFormat)
   }
 
-  private getDate(date: string): Date {
+  private getDate(date: string, view: string): Date {
     const parts = date.split('.')
-    const day = parseInt(parts[0], 10)
-    const month = parseInt(parts[1], 10) - 1
-    const year = parseInt(parts[2], 10)
-    
-    return new Date(year, month, day)
+    const dates = parts.map((part, index) => {
+      if(view === 'day') {
+        return index === 1 ? parseInt(part, 10) - 1 : parseInt(part, 10)
+      }
+
+      if(view === 'month') {
+        return index === 0 ? parseInt(part, 10) - 1 : parseInt(part, 10)
+      }
+
+      return index === 1 ? parseInt(part, 10) - 1 : parseInt(part, 10)
+    })
+
+    if(view === 'day') {
+      const [day, month, year] = dates
+      return new Date(year, month, day)
+    }
+
+    if(view === 'month') {
+      const [month, year] = dates
+      return new Date(year, month)
+    }
+
+    const [year] = dates
+
+    return new Date(year, 0)
   }
 
   private getDateString(date: Date, displayFormat: DisplayFormat): string {
@@ -53,5 +73,23 @@ export default class MainService extends MainContract {
     const dateFormatter = new Intl.DateTimeFormat('default', options)
 
     return dateFormatter.format(date)
+  }
+
+  getDisplayFormat(displayFormat: DisplayFormat,type: string): string {
+    if(displayFormat) {
+      return displayFormat
+    }
+
+    const types = new Map([
+      ['date', 'DD/MM/YYYY'],
+      ['month', 'MM/YYYY'],
+      ['year', 'YYYY'],
+      ['datetime', 'DD/MM/YYYY/hh/mm'],
+      ['time', 'hh/mm'],
+    ])
+
+    const format: string = types.get(type) || 'DD/MM/YYYY'
+
+    return format
   }
 }
