@@ -1,9 +1,9 @@
 import { ref, SetupContext, onMounted, watchEffect } from 'vue'
-import type { Item } from './types'
+import type { SelectProps, Item, Value } from './types'
 
-export function useSelect(props, ctx: SetupContext) {
+export function useSelect(props: SelectProps, ctx: SetupContext) {
   const isVisibleItemsObject = ref<boolean>(false)
-  const keyValue = ref<string | number | null | undefined>(props.value)
+  const keyValue = ref<Value>(props.value)
   const valueInput = ref<string | number | null>(getValueInput())
   const refSelect = ref<HTMLElement | null>(null)
   const selectWidth = ref<string | undefined>(props.width)
@@ -11,7 +11,7 @@ export function useSelect(props, ctx: SetupContext) {
   function getValueInput(): string | number | null {
     if(keyValue.value) {
       const item = props.items.find((item: Item) => item[props.keyExpr] === keyValue.value)
-      return item[props.displayExpr]
+      return item ? item[props.displayExpr] : null
     }
 
     return null
@@ -28,7 +28,7 @@ export function useSelect(props, ctx: SetupContext) {
   }
 
   function clickSelect(): void {
-    isVisibleItemsObject.value = !isVisibleItemsObject.value
+    if(!props.isDisabled) isVisibleItemsObject.value = !isVisibleItemsObject.value
   }
 
   function changedValue(item: Item): void {

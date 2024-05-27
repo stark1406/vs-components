@@ -1,5 +1,5 @@
 import { PropType, defineComponent } from 'vue'
-import type { Item } from './types'
+import type { Item, Value } from './types'
 
 export const SelectContract = defineComponent({
   props: {
@@ -12,7 +12,7 @@ export const SelectContract = defineComponent({
       default: () => []
     },
     value: {
-      type: [String, Number] as PropType<string | number | null | undefined>,
+      type: [String, Number] as PropType<Value>,
       default: undefined
     },
     width: {
@@ -34,7 +34,11 @@ export const SelectContract = defineComponent({
     showDropDownButton: {
       type: Boolean,
       default: true
-    }
+    },
+    isDisabled: {
+      type: Boolean,
+      default: false,
+    },
   },
   emits: [
     'changed:value',

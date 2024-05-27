@@ -1,5 +1,5 @@
 import { PropType, defineComponent } from 'vue'
-import type { Item } from './types'
+import type { Item, Value } from './types'
 
 export const SelectItemsObjectContract = defineComponent({
   props: {
@@ -8,7 +8,7 @@ export const SelectItemsObjectContract = defineComponent({
       default: () => []
     },
     value: {
-      type: [String, Number] as PropType<string | number | null | undefined>,
+      type: [String, Number] as PropType<Value>,
       default: undefined
     },
     displayExpr: {

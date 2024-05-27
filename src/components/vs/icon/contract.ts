@@ -14,5 +14,13 @@ export const IconContract = defineComponent({
       type: String,
       default: '15px'
     },
+    color: {
+      type: String,
+      default: undefined
+    },
+    hoverColor: {
+      type: String,
+      default: undefined
+    },
   },
 })

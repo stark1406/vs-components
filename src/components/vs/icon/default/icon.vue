@@ -2,11 +2,12 @@
 import { defineComponent } from 'vue'
 import { IconContract } from '../contract'
 import { useIcon } from '../setup'
+import type { IconProps } from '../types'
 
 export default defineComponent({
   name: 'VsIcon',
   extends: IconContract,
-  setup(props) {
+  setup(props: IconProps) {
     return useIcon(props)
   },
 })
@@ -14,14 +15,21 @@ export default defineComponent({
 
 <template>
   <span
-    class="vs-span"
+    :class="[
+      'vs-icon',
+      isColor ? `vs-icon_${color}` : ''
+    ]"
     :style="styleIcon"
     v-html="content"
   />
 </template>
 
 <style lang="scss" scoped>
-.vs-span {
+.vs-icon {
   display: flex;
+
+  &:hover {
+    color: var(--vs-icon-hover-color) !important;
+  }
 }
 </style>

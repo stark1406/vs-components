@@ -5,6 +5,7 @@ import { useSelect } from '../setup'
 import { VsIcon } from '@vs/icon'
 import { VsPopper } from '@vs/popper'
 import { SelectItemsObject } from '../components/select-items-object'
+import type { SelectProps } from '../types'
 
 export default defineComponent({
   name: 'VsSelect',
@@ -14,8 +15,7 @@ export default defineComponent({
     SelectItemsObject
   },
   extends: SelectContract,
-  setup(props, ctx) {
-    
+  setup(props: SelectProps, ctx) {
     return useSelect(props, ctx)
   },
 })
@@ -29,48 +29,52 @@ export default defineComponent({
     }"
   >
     <label
-      class="vs-input_label"
+      class="vs-select_label"
     >
       {{ label }}
     </label>
     <div
-      class="vs-content_select"
+      :class="[
+        'vs-select_content',
+        {
+          'vs-select_content_disabled': isDisabled
+        }
+      ]"
     >
       <input
-        :class="[
-          'vs-input',
-          `vs-input_default`
-        ]"
+        class="vs-input"
         placeholder="placeholder"
         autocomplete="off"
         type="text"
+        :disabled="isDisabled"
         :readonly="true"
         :value="valueInput"
         @click="clickSelect"
       >
-      <div class="vs-container_buttons">
+      <div class="vs-select_container-buttons">
         <div 
-          v-if="showClearButton && keyValue"
-          class="vs-clear"
+          v-if="showClearButton && keyValue && !isDisabled"
+          class="vs-select_clear"
           @click="clickClear"
         >
           <vs-icon
-            class="vs-icon_clear"
             name="cross-delete"
             width="20px"
             height="20px"
+            color="#999999"
+            hover-color="var(--primary)"
           />
         </div>
         <div 
           v-if="showDropDownButton"
-          class="vs-drop_down"
+          class="vs-select_drop-down"
           @click="clickSelect"
         >
           <vs-icon
             :class="[
-              'vs-icon_drop_down',
+              'vs-icon-select_drop-down',
               {
-                'vs-icon_drop_down_select': isVisibleItemsObject
+                'vs-icon-select_drop-down_select': isVisibleItemsObject
               }
             ]"
             name="chevron-down"
@@ -100,52 +104,61 @@ export default defineComponent({
 </template>
 
 <style lang="scss" scoped>
-.vs-content_select {
+.vs-select_label {
+  font-weight: bold;
+  font-size: 13px;
+  color: var(--primary);
+}
+
+.vs-select_content {
   display: flex;
-  border: 1px solid var(--primary);
+  border: 1px solid #ddd;
   border-radius: 7px;
   position: relative;
   height: 40px;
   margin-top: 3px;
   cursor: pointer;
-}
 
-.vs-container_buttons {
-  display: flex;
-}
-.vs-input {
-  margin: 0 10px;
-  font-size: 15px;
-  max-width: 100%;
-  width: 100%;
-  cursor: pointer;
-  &:focus {
-    outline: none;
+  &:hover {
+    border: 1px solid var(--primary);
   }
-  &_default {
+
+  &:focus-within {
+    border: 1px solid var(--primary);
+  }
+
+  &_disabled {
+    opacity: .5;
+  }
+
+  input {
+    margin: 0 10px;
+    font-size: 15px;
+    max-width: 100%;
+    width: 100%;
+    cursor: pointer;
     border: 0;
 
+    &:focus {
+      outline: none;
+    }
   }
-  &_label {
-    font-weight: bold;
-    font-size: 13px;
-    color: var(--primary);
-  }
-}
 
-.vs-clear, .vs-drop_down {
-  padding: 10px;
-}
+  .vs-select_container-buttons {
+    display: flex;
 
-.vs-icon_clear {
-  color: #999
-}
+    .vs-select_clear, .vs-select_drop-down {
+      padding: 10px;
+    }
 
-.vs-icon_drop_down {
-  transform: rotate(0deg);
-  transition: transform .3s;
-  &_select {
-    transform: rotate(180deg);
+    .vs-icon-select_drop-down {
+      transform: rotate(0deg);
+      transition: transform .3s;
+
+      &_select {
+        transform: rotate(180deg);
+      }
+    }
   }
 }
 </style>

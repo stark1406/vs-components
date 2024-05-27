@@ -14,15 +14,15 @@ export default defineComponent({
 
 <template>
   <div
-    class="vs-items"
+    class="vs-select_items"
   >
     <div
       v-for="item in items"
       :key="item[keyExpr]"
       :class="[
-        'vs-item',
+        'vs-select_item',
         {
-          'vs-item_selected': isSelected(item)
+          'vs-select_item_selected': isSelected(item)
         }
       ]"
       @click="selectItem(item)"
@@ -33,29 +33,32 @@ export default defineComponent({
 </template>
 
 <style lang="scss" scoped>
-.vs-items {
+.vs-select_items {
   z-index: 10px;
   background-color: #fff;
   border-radius: 7px;
   padding: 4px 0px;
   max-height: 300px;
   overflow: auto;
-}
 
-.vs-item {
-  cursor: pointer;
-  padding: 7px 9px;
-  &_selected {
-    background-color: var(--primary);
-    color: #fff;
-  }
-  &:hover {
-    background-color: #f1f1f1;
-    color: #000;
-  }
-  &:active {
-    background-color: var(--primary);
-    color: #fff;
+  .vs-select_item {
+    cursor: pointer;
+    padding: 7px 9px;
+
+    &_selected {
+      background-color: var(--primary);
+      color: #fff;
+    }
+
+    &:hover {
+      background-color: #f1f1f1;
+      color: #000;
+    }
+
+    &:active {
+      background-color: var(--primary);
+      color: #fff;
+    }
   }
 }
 </style>
