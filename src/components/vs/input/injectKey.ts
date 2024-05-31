@@ -1,0 +1,1 @@
+export const CLEAR_INPUT_FROM_MAIN = Symbol()

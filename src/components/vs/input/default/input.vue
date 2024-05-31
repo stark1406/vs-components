@@ -1,12 +1,17 @@
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, SetupContext } from 'vue'
 import { InputContract } from '../contract'
 import { useInput } from '../setup'
+import { ActionButtons } from '../components/action-buttons/index'
+import type { InputProps } from '../types'
 
 export default defineComponent({
   name: 'VsInput',
+  components: {
+    ActionButtons
+  },
   extends: InputContract,
-  setup(props, ctx) {
+  setup(props: InputProps, ctx: SetupContext) {
     return useInput(props, ctx)
   },
 })
@@ -14,44 +19,42 @@ export default defineComponent({
 
 <template>
   <div
-    class="vs-form_input"
+    class="vs-input"
     :style="{
       width: width
     }"
   >
+    <label
+      :for="name"
+      class="vs-input_label"
+    >
+      {{ label }}
+    </label>
     <div
       :class="[
-        'vs-content',
-        `vs-content_${stylingMode}`
+        'vs-input_content',
+        `vs-input_content_${stylingMode}`
       ]"
     >
-      <label
-        :for="name"
-        class="vs-input_label"
-      >
-        {{ label }}
-      </label>
       <input
         :id="name"
-        :class="[
-          'vs-input',
-          `vs-input_${stylingMode}`
-        ]"
         :type="type"
-        :value="value"
+        :value="valueInput"
         :name="name"
         :placeholder="placeholder"
-        @input="updateValue"
+        :disabled="isDisabled"
+        v-on="events"
       >
+      <action-buttons 
+        v-if="showClearButton && valueInput && !isDisabled"
+      />
       <TransitionGroup>
         <div
           v-for="element of error"
           :key="element"
-          class="vs-form_error"
+          class="vs-input_content-error"
         >
-          <div class="vs-form_error__message">
-            {{ element }}
-          </div>
+          {{ element }}
         </div>
       </TransitionGroup>
     </div>
@@ -59,50 +62,65 @@ export default defineComponent({
 </template>
 
 <style lang="scss" scoped>
-.vs-content {
-    display: flex;
-    flex-direction: column;
-    &_underlined {
-      border-bottom: 1px solid #ddd;
-    }
-  }
-.vs-form {
-  &_input {
-    margin-bottom: 30px;
-    position: relative;
-  }
-  &_error {
-    background: var(--danger);
-    margin-top: 4px;
-    border-radius: 7px;
-    font-size: 13px;
-    color: #fff;
-    padding: 5px;
-  }
-}
 .vs-input {
-  padding: 0 10px;
-  height: 40px;
-  font-size: 15px;
-  width: 100%;
-  position: relative;
-  z-index: 1;
-  &_default {
-    border: 1px solid var(--primary);
-    border-radius: 7px;
-  }
-  &_underlined {
-    border: 0;
-    &:focus {
-      outline: none;
-      border-bottom: 1px solid var(--primary);
-    }
-  }
   &_label {
     font-weight: bold;
     font-size: 13px;
     margin-bottom: 3px;
     color: var(--primary);
+  }
+
+  &_content {
+    display: flex;
+    border: 1px solid var(--primary);
+    position: relative;
+    height: 40px;
+    margin-top: 3px;
+
+    input {
+      margin: 0 10px;
+      font-size: 15px;
+      max-width: 100%;
+      width: 100%;
+      border: 0;
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    &_default {
+      border: 1px solid #ddd;
+      border-radius: 7px;
+
+      &:hover,
+      &:focus-within {
+        border: 1px solid var(--primary);
+      }
+    }
+
+    &_underlined {
+      border: 0;
+      border-bottom: 1px solid #ddd;
+
+      &:hover {
+        border-bottom: 1px solid var(--primary);
+      }
+
+      &:focus-within {
+        outline: none;
+        border-bottom: 1px solid var(--primary);
+      }
+    }
+
+    .vs-input_content-error {
+      background: var(--danger);
+      margin-top: 4px;
+      border-radius: 7px;
+      font-size: 13px;
+      color: #fff;
+      padding: 5px;
+    }
   }
 }
 

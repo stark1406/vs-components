@@ -12,7 +12,8 @@ const attributes: InputDefault[] = [
     label: 'Name',
     name: 'name',
     width: '300px',
-    placeholder: 'Name'
+    placeholder: 'Name',
+    'show-clear-button': true
   }
 ]
 </script>
@@ -32,11 +33,12 @@ const attributes: InputDefault[] = [
         name="name"
         width="300px"
         placeholder="Name"
+        show-clear-button
       />
     </div>
   </widget-code-view>
 </template>
 
 <style lang="scss" scoped>
-@import '../styles.scss';
+@import '../styles';
 </style>

@@ -1,5 +1,5 @@
 import { PropType, defineComponent } from 'vue'
-import { type, stylingMode} from './types'
+import type { Type, StylingMode } from './types'
 
 export const InputContract = defineComponent({
   props: {
@@ -16,11 +16,11 @@ export const InputContract = defineComponent({
       required: true
     },
     type: {
-      type: String as PropType<type>,
+      type: String as PropType<Type>,
       default: 'text'
     },
     stylingMode: {
-      type: String as PropType<stylingMode>,
+      type: String as PropType<StylingMode>,
       default: 'default'
     },
     placeholder: {
@@ -39,8 +39,18 @@ export const InputContract = defineComponent({
       type: Array,
       default: () => ([])
     },
+    isDisabled: {
+      type: Boolean,
+      default: false,
+    },
+    showClearButton: {
+      type: Boolean,
+      default: false
+    },
   },
   emits: [
-    'update:value'
+    'update:value',
+    'focus',
+    'blur'
   ]
 })
