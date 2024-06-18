@@ -1,4 +1,17 @@
 
+export interface DatePikerProps {
+  value: string
+  variant: Variant
+  type: Type
+  disabled: boolean
+  name: string
+  displayFormat: DisplayFormat
+  updateValue: Function
+  showTodayButton: boolean
+  showSelectButton: boolean
+  showClearButton: boolean
+}
+
 export type Variant = 'inline' | 'input'
 export type Type = 'date' | 'datetime' | 'time' | 'year' | 'month'
 export type DisplayFormat = 'DD/MM/YYYY' | 'DD/MM/YYYY/hh/mm' | 'hh/mm' | 'MM/YYYY' | 'YYYY'
@@ -23,3 +36,8 @@ export interface DateFormatOptions {
 
 export type Datas = Date[][] | MonthMatrix | number[][] | undefined
 export type Item = Date | MonthItem | number
+
+export interface Time {
+  hours: number;
+  minutes: number;
+}

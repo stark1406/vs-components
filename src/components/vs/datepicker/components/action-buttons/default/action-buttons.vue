@@ -49,21 +49,23 @@ export default defineComponent({
   display: flex;
   justify-content: space-between;
   margin-top: 15px;
-}
 
-.vs-btn {
-  padding: 5px;
-  color: rgb(156 163 175);
-  &:enabled:hover {
-    color: rgb(51 65 85);
-  }
-}
+  .vs-btn {
+    padding: 5px;
+    color: rgb(156 163 175);
 
-.vs-btn_today {
-  padding: 5px;
-  color: var(--primary);
-  &:enabled:hover {
-    color: rgb(51 65 85);
+    &:enabled:hover {
+      color: rgb(51 65 85);
+    }
+
+    &_today {
+      padding: 5px;
+      color: var(--primary);
+
+      &:enabled:hover {
+        color: rgb(51 65 85);
+      }
+    }
   }
 }
 </style>

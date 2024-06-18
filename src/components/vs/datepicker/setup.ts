@@ -1,9 +1,9 @@
-import { ref, provide } from 'vue'
+import { reactive, ref, provide } from 'vue'
 import { DaysService, MainService, MonthService, ToolbarService, YearService } from './services'
-import { TODAY_FROM_MAIN, SELECT_DATE_FROM_MAIN, CLEAR_DATE_FROM_MAIN } from './injectKey'
-import type { Datas, Item, MonthItem } from './types'
+import { TODAY_FROM_MAIN, SELECT_DATE_FROM_MAIN, CLEAR_DATE_FROM_MAIN, TIME_FROM_MAIN } from './injectKey'
+import type { DatePikerProps, Datas, Item, MonthItem, Time } from './types'
 
-export function useDatepicker(props) {
+export function useDatepicker(props: DatePikerProps) {
   const mainService = new MainService()
   const toolbarServices = new ToolbarService()
   const daysService = new DaysService()
@@ -12,6 +12,11 @@ export function useDatepicker(props) {
 
   const type: string = props.type
   const view = ref<string>(getView())
+
+  const selectedOption = ref<string>(getSelectedOption())
+  const selectedTime = reactive<Time>(getSelectedTime())
+
+  provide(TIME_FROM_MAIN, selectedTime)
 
   const selectedDate = ref<string>(props.value)
   const currentDate = ref<Date>(getCurrentDate())
@@ -22,8 +27,7 @@ export function useDatepicker(props) {
 
   function getCurrentDate(): Date {
     let date: Date = new Date()
-
-    if(props.value) {
+    if(props.value && selectedOption.value !== 'time') {
       const formattedDate = mainService.formatDate(props.value, props.displayFormat, view.value)
       if(formattedDate instanceof Date) {
         date = formattedDate
@@ -31,6 +35,21 @@ export function useDatepicker(props) {
     }
 
     return date
+  }
+
+  function getSelectedTime(): Time {
+    const time: Time = {
+      hours: 0,
+      minutes: 0
+    }
+
+    if(props.value && selectedOption.value === 'time') {
+      const data = props.value.split(':')
+      time.hours = Number(data[0])
+      time.minutes = Number(data[1])
+    }
+
+    return time
   }
 
   function getView(): string {
@@ -45,6 +64,10 @@ export function useDatepicker(props) {
     const view: string = views.get(type) || ''
 
     return view
+  }
+
+  function getSelectedOption(): string {
+    return type === 'time' ? 'time' : 'calendar'
   }
 
   function getDatas(value: Date): Datas {
@@ -259,8 +282,19 @@ export function useDatepicker(props) {
   provide(TODAY_FROM_MAIN, today)
 
   function selectDate(): void {
-    props.updateValue(selectedDate.value)
-    // ctx.emit('update:model-value', selectedDate.value)
+    let data: string = ''
+
+    if(selectedOption.value === 'time') {
+      const hours = selectedTime.hours < 10 ? `0${selectedTime.hours}` : selectedTime.hours
+
+      const minutes = selectedTime.minutes < 10 ? `0${selectedTime.minutes}` : selectedTime.minutes
+
+      data = hours + ':' + minutes
+    } else {
+      data = selectedDate.value
+    }
+
+    props.updateValue(data)
   }
 
   provide(SELECT_DATE_FROM_MAIN, selectDate)
@@ -269,6 +303,10 @@ export function useDatepicker(props) {
     today()
     selectedDate.value = ''
     selectDate()
+  }
+
+  function updateSelectedOption(value: string): void {
+    selectedOption.value = value
   }
 
   provide(CLEAR_DATE_FROM_MAIN, clearDate)
@@ -286,5 +324,7 @@ export function useDatepicker(props) {
     isCurrent,
     isSelected,
     selectItem,
+    selectedOption,
+    updateSelectedOption
   }
 }

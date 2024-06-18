@@ -49,4 +49,7 @@ export const DatepickerContract = defineComponent({
       default: false,
     },
   },
+  emits: [
+    'update:value',
+  ]
 })

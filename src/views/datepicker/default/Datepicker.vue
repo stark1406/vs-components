@@ -1,5 +1,10 @@
 <script lang="ts" setup>
-import { DateInline, MonthInline, YearInline } from '../components'
+import {
+  DateInline,
+  MonthInline,
+  YearInline,
+  TimeInline
+} from '../components'
 </script>
 
 <template>
@@ -9,6 +14,7 @@ import { DateInline, MonthInline, YearInline } from '../components'
   <date-inline />
   <month-inline />
   <year-inline />
+  <time-inline />
 </template>
 
 <style lang="scss" scoped>
