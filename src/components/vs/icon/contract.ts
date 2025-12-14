@@ -1,4 +1,5 @@
-import { defineComponent } from 'vue'
+import { defineComponent, PropType } from 'vue'
+import { Size } from './types'
 
 export const IconContract = defineComponent({
   props: {
@@ -8,19 +9,23 @@ export const IconContract = defineComponent({
     },
     height: {
       type: String,
-      default: '15px'
+      default: 'fit-content',
     },
     width: {
       type: String,
-      default: '15px'
+      default: 'fit-content',
     },
     color: {
       type: String,
-      default: undefined
+      default: undefined,
     },
     hoverColor: {
       type: String,
-      default: undefined
+      default: undefined,
+    },
+    size: {
+      type: String as PropType<Size>,
+      default: 'custom',
     },
   },
 })

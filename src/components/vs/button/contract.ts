@@ -1,14 +1,14 @@
 import { defineComponent, PropType } from 'vue'
-import type { color, type, size } from './types'
+import type { Color, Type, Size } from './types'
 
 export const ButtonContract = defineComponent({
   props: {
     label: {
       type: String,
-      default: ''
+      default: '',
     },
     color: {
-      type: String as PropType<color>,
+      type: String as PropType<Color>,
       default: 'primary',
     },
     isRounded: {
@@ -20,21 +20,29 @@ export const ButtonContract = defineComponent({
       default: false,
     },
     type: {
-      type: String as PropType<type>,
+      type: String as PropType<Type>,
       default: 'button',
     },
     isOutlined: {
       type: Boolean,
       default: false,
     },
-    icon: {
+    nameIcon: {
       type: String,
-      default: ''
+      default: '',
+    },
+    isRightIcon: {
+      type: Boolean,
+      default: false,
+    },
+    isIcon: {
+      type: Boolean,
+      default: false,
     },
     size: {
-      type: String as PropType<size>,
-      default: 'normal'
-    }
+      type: String as PropType<Size>,
+      default: 'medium',
+    },
   },
   emits: ['click'],
 })

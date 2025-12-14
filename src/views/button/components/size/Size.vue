@@ -5,33 +5,26 @@ import WidgetCodeView from '@widgets/CodeView/WidgetCodeView.vue'
 
 const attributes: Size[] = [
   {
-    label: 'Normal',
+    label: 'Small',
+    size: 'small',
+  },
+  {
+    label: 'Medium',
+    size: 'medium',
   },
   {
     label: 'Large',
-    size: 'large'
-  }
+    size: 'large',
+  },
 ]
 </script>
 
 <template>
-  <h2>
-    Size
-  </h2>
-  <widget-code-view
-    component="button"
-    :attributes="attributes"
-  >
+  <h2>Size</h2>
+  <widget-code-view component="button" :attributes>
     <div class="content">
-      <div
-        v-for="(items, ind) in attributes"
-        :key="ind"
-        class="item"
-      >
-        <vs-button
-          :label="items.label"
-          :size="items.size"
-        />
+      <div v-for="(items, index) in attributes" :key="index">
+        <vs-button :label="items.label" :size="items.size" />
       </div>
     </div>
   </widget-code-view>
@@ -42,10 +35,6 @@ const attributes: Size[] = [
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  min-width: 100%;
-}
-
-.item {
-  margin: 10px;
+  gap: var(--spacing-2);
 }
 </style>

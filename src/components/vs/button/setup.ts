@@ -1,12 +1,12 @@
 import { SetupContext } from 'vue'
+import { ButtonProps } from './types'
 
-export function useButton(props, ctx: SetupContext) {
-
-  function clickOnButton() {
+export function useButton(props: ButtonProps, ctx: SetupContext) {
+  function onClick() {
     ctx.emit('click')
   }
 
   return {
-    clickOnButton
+    onClick,
   }
 }

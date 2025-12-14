@@ -6,7 +6,7 @@ import WidgetCodeView from '@widgets/CodeView/WidgetCodeView.vue'
 const attributes: Event[] = [
   {
     label: 'Click',
-    "@click": '...'
+    '@click': '...',
   },
 ]
 
@@ -16,18 +16,10 @@ const clickBtn = () => {
 </script>
 
 <template>
-  <h2>
-    Event
-  </h2>
-  <widget-code-view
-    component="button"
-    :attributes="attributes"
-  >
+  <h2>Event</h2>
+  <widget-code-view component="button" :attributes>
     <div class="content">
-      <vs-button
-        label="Click"
-        @click="clickBtn"
-      />
+      <vs-button label="Click" @click="clickBtn" />
     </div>
   </widget-code-view>
 </template>
@@ -36,7 +28,5 @@ const clickBtn = () => {
 .content {
   display: flex;
   justify-content: center;
-  flex-wrap: wrap;
-  min-width: 100%;
 }
 </style>

@@ -1,10 +1,10 @@
 <script lang="ts" setup>
-import { ref, computed, ComputedRef, defineProps, PropType } from 'vue'
+import { ref, computed, ComputedRef, PropType } from 'vue'
 import { VsCard } from '@vs/card'
 import { VsButton } from '@vs/button'
 import 'highlight.js/styles/vs2015.min.css'
 import 'highlight.js/lib/common'
-import hljsVuePlugin from "@highlightjs/vue-plugin"
+import hljsVuePlugin from '@highlightjs/vue-plugin'
 import GeneratorCode from '@/utils/GeneratorCode/GeneratorCode'
 
 const highlightjs = hljsVuePlugin.component
@@ -17,16 +17,16 @@ const code = ref<string>('')
 const props = defineProps({
   component: {
     type: String,
-    default: ''
+    default: '',
   },
   attributes: {
     type: Array as PropType<Record<string, string | number | boolean>[]>,
-    default: () => []
+    default: () => [],
   },
   slots: {
     type: Array as PropType<string[]>,
-    default: () => []
-  }
+    default: () => [],
+  },
 })
 
 function showCode(): void {
@@ -42,12 +42,15 @@ const isCopy = ref<boolean>(false)
 
 function copyCodeToClipboard(): void {
   if (code.value) {
-    navigator.clipboard.writeText(code.value).then(() => {
-      isCopy.value = true
-      setTimeout(() => isCopy.value = false, 2000)
-    }).catch((error) => {
-      console.error('Unable to copy to clipboard', error)
-    })
+    navigator.clipboard
+      .writeText(code.value)
+      .then(() => {
+        isCopy.value = true
+        setTimeout(() => (isCopy.value = false), 2000)
+      })
+      .catch((error) => {
+        console.error('Unable to copy to clipboard', error)
+      })
   }
 }
 
@@ -61,35 +64,33 @@ const iconCopyCode: ComputedRef<string> = computed(() => {
     <template #title>
       <div class="title">
         <vs-button
-          class="btn_icon"
-          :is-outlined="true"
-          :icon="iconShowCode"
+          class="title__btn-icon"
+          is-outlined
+          is-icon
+          size="small"
+          :name-icon="iconShowCode"
           @click="showCode"
         />
       </div>
     </template>
-    
+
     <slot />
 
     <template #footer>
       <Transition>
-        <div 
-          v-if="isCode"
-          class="highlightjs"
-        >
-          <highlightjs
-            language="js"
-            :code="code"
-          />
+        <div v-if="isCode" class="highlightjs">
+          <highlightjs language="js" :code="code" />
           <vs-button
             :class="[
-              'btn_copy',
+              'btn-copy',
               {
-                'btn_copy_check': isCopy 
-              }
+                'btn-copy__check': isCopy,
+              },
             ]"
+            is-icon
+            size="small"
             :is-outlined="false"
-            :icon="iconCopyCode"
+            :name-icon="iconCopyCode"
             @click="copyCodeToClipboard"
           />
         </div>
@@ -102,25 +103,26 @@ const iconCopyCode: ComputedRef<string> = computed(() => {
 .title {
   display: flex;
   justify-content: end;
-  min-width: 100%;
+
+  &__btn-icon {
+    color: var(--primary);
+  }
 }
 
-.btn_icon {
-  color: var(--primary);
-}
-
-.btn_copy {
+.btn-copy {
   position: absolute;
   top: 0;
   right: 0;
-  margin: 10px;
-  &_check {
-    color: #0aff33;
+  margin: var(--spacing-2);
+
+  &__check {
+    color: var(--success);
   }
 }
+
 .highlightjs {
-  background: #1e1e1e;
-  padding: 5px;
+  background: var(--bg-dark);
+  padding: var(--spacing-05);
   position: relative;
   border-radius: 10px;
 }

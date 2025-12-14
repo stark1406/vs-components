@@ -7,26 +7,17 @@ import type { Default } from '../types'
 const attributes: Default[] = [
   {
     name: 'heart',
-    width: '30px',
-    height: '30px',
-  }
+    width: '2rem',
+    height: '2rem',
+  },
 ]
 </script>
 
 <template>
-  <h2>
-    Default
-  </h2>
-  <widget-code-view
-    component="icon"
-    :attributes="attributes"
-  >
+  <h2>Default</h2>
+  <widget-code-view component="icon" :attributes="attributes">
     <div class="content">
-      <vs-icon
-        :name="icons[0].name"
-        height="30px"
-        width="30px"
-      />
+      <vs-icon :name="icons[0].name" :height="attributes[0].height" :width="attributes[0].width" />
     </div>
   </widget-code-view>
 </template>
@@ -35,6 +26,5 @@ const attributes: Default[] = [
 .content {
   display: flex;
   justify-content: center;
-  min-width: 100%;
 }
 </style>

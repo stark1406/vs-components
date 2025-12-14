@@ -6,52 +6,46 @@ import type { Icon } from '../types'
 const attributes: Icon[] = [
   {
     color: 'primary',
-    icon: 'heart',
+    'name-icon': 'heart',
     'is-outlined': true,
   },
   {
     color: 'secondary',
-    icon: 'hand'
+    'name-icon': 'hand',
   },
   {
     color: 'success',
-    icon: 'address-book',
+    'name-icon': 'address-book',
     'is-outlined': true,
   },
   {
     color: 'info',
-    icon: 'credit-card'
+    'name-icon': 'credit-card',
   },
   {
     color: 'warning',
-    icon: 'lemon',
+    'name-icon': 'lemon',
     'is-outlined': true,
   },
   {
     color: 'danger',
-    icon: 'hourglass'
-  }
+    'name-icon': 'hourglass',
+  },
 ]
 </script>
 
 <template>
-  <h2>
-    Icon
-  </h2>
-  <widget-code-view
-    component="button"
-    :attributes="attributes"
-  >
+  <h2>Icon</h2>
+  <widget-code-view component="button" :attributes>
     <div class="content">
-      <div
-        v-for="(items, ind) in attributes"
-        :key="ind"
-        class="item"
-      >
+      <div v-for="(items, index) in attributes" :key="index">
         <vs-button
-          :icon="items.icon"
+          :nameIcon="items['name-icon']"
           :color="items.color"
           :is-outlined="items['is-outlined']"
+          is-icon
+          is-rounded
+          size="medium"
         />
       </div>
     </div>
@@ -63,10 +57,6 @@ const attributes: Icon[] = [
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  min-width: 100%;
-}
-
-.item {
-  margin: 10px;
+  gap: var(--spacing-2);
 }
 </style>

@@ -6,49 +6,37 @@ import type { Colors } from '../types'
 const attributes: Colors[] = [
   {
     label: 'Primary',
-    color: 'primary'
+    color: 'primary',
   },
   {
     label: 'Secondary',
-    color: 'secondary'
+    color: 'secondary',
   },
   {
     label: 'Success',
-    color: 'success'
+    color: 'success',
   },
   {
     label: 'Info',
-    color: 'info'
+    color: 'info',
   },
   {
     label: 'Warning',
-    color: 'warning'
+    color: 'warning',
   },
   {
     label: 'Danger',
-    color: 'danger'
-  }
+    color: 'danger',
+  },
 ]
 </script>
 
 <template>
-  <h2>
-    Colors
-  </h2>
-  <widget-code-view
-    component="button"
-    :attributes="attributes"
-  >
+  <h2>Colors</h2>
+  <widget-code-view component="button" :attributes>
     <div class="content">
-      <div
-        v-for="(items, ind) in attributes"
-        :key="ind"
-        class="item"
-      >
-        <vs-button
-          :label="items.label"
-          :color="items.color"
-        />
+      <div v-for="(items, index) in attributes" :key="index">
+        <vs-button :label="items.label" :color="items.color" />
       </div>
     </div>
   </widget-code-view>
@@ -59,10 +47,6 @@ const attributes: Colors[] = [
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  min-width: 100%;
-}
-
-.item {
-  margin: 10px;
+  gap: var(--spacing-2);
 }
 </style>

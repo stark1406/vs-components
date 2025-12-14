@@ -1,0 +1,111 @@
+.vs-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--spacing-1);
+  color: #fff;
+  border-radius: 7px;
+  border: none;
+  cursor: pointer;
+  font-size: 15px;
+  transition: 0.2s;
+
+  &--primary {
+    background: var(--primary);
+    border: 1px solid var(--primary);
+
+    &:enabled:hover {
+      background: var(--primary-hover);
+    }
+  }
+
+  &--secondary {
+    background: var(--secondary);
+    border: 1px solid var(--secondary);
+
+    &:enabled:hover {
+      background: var(--secondary-hover);
+    }
+  }
+
+  &--success {
+    background: var(--success);
+    border: 1px solid var(--success);
+
+    &:enabled:hover {
+      background: var(--success-hover);
+    }
+  }
+
+  &--info {
+    background: var(--info);
+    border: 1px solid var(--info);
+
+    &:enabled:hover {
+      background: var(--info-hover);
+    }
+  }
+
+  &--warning {
+    background: var(--warning);
+    border: 1px solid var(--warning);
+
+    &:enabled:hover {
+      background: var(--warning-hover);
+    }
+  }
+
+  &--danger {
+    background: var(--danger);
+    border: 1px solid var(--danger);
+
+    &:enabled:hover {
+      background: var(--danger-hover);
+    }
+  }
+
+  &--rounded {
+    border-radius: 15px;
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: default;
+  }
+
+  &--outlined {
+    background: transparent;
+    color: #000;
+
+    &:hover {
+      color: #fff;
+    }
+  }
+
+  &--small {
+    height: 2rem;
+    padding: 0 var(--spacing-1);
+
+    &.vs-btn--icon {
+      padding: var(--spacing-1);
+    }
+  }
+
+  &--medium {
+    height: 2.5rem;
+    padding: 0 var(--spacing-2);
+
+    &.vs-btn--icon {
+      padding: var(--spacing-1);
+    }
+  }
+
+  &--large {
+    height: 3rem;
+    padding: 0 var(--spacing-3);
+
+    &.vs-btn--icon {
+      padding: 0.75rem;
+    }
+  }
+}

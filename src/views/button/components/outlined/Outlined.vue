@@ -33,29 +33,16 @@ const attributes: Outlined[] = [
     label: 'Danger',
     color: 'danger',
     'is-outlined': true,
-  }
+  },
 ]
 </script>
 
 <template>
-  <h2>
-    Outlined
-  </h2>
-  <widget-code-view
-    component="button"
-    :attributes="attributes"
-  >
+  <h2>Outlined</h2>
+  <widget-code-view component="button" :attributes>
     <div class="content">
-      <div
-        v-for="(items, ind) in attributes"
-        :key="ind"
-        class="item"
-      >
-        <vs-button
-          :label="items.label"
-          :color="items.color"
-          :is-outlined="items['is-outlined']"
-        />
+      <div v-for="(items, ind) in attributes" :key="ind">
+        <vs-button :label="items.label" :color="items.color" :is-outlined="items['is-outlined']" />
       </div>
     </div>
   </widget-code-view>
@@ -66,10 +53,6 @@ const attributes: Outlined[] = [
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  min-width: 100%;
-}
-
-.item {
-  margin: 10px;
+  gap: var(--spacing-2);
 }
 </style>

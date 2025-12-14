@@ -15,21 +15,10 @@ export default defineComponent({
 
 <template>
   <span
-    :class="[
-      'vs-icon',
-      isColor ? `vs-icon_${color}` : ''
-    ]"
+    :class="['vs-icon', `vs-icon--${size}`, isColor ? `vs-icon_${color}` : '']"
     :style="styleIcon"
     v-html="content"
   />
 </template>
 
-<style lang="scss" scoped>
-.vs-icon {
-  display: flex;
-
-  &:hover {
-    color: var(--vs-icon-hover-color) !important;
-  }
-}
-</style>
+<style lang="scss" scoped src="../styles.scss"></style>

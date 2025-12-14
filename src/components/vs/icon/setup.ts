@@ -5,14 +5,7 @@ const cache = new Map<string, string | Promise<any>>()
 
 export function useIcon(props: IconProps) {
   const content = ref<string>('')
-  const colors: string[] = [
-    'primary',
-    'secondary',
-    'success',
-    'info',
-    'warning',
-    'danger'
-  ]
+  const colors: string[] = ['primary', 'secondary', 'success', 'info', 'warning', 'danger']
 
   watchEffect(async () => {
     const cachedContent = cache.get(props.name)
@@ -35,11 +28,11 @@ export function useIcon(props: IconProps) {
   const styleIcon: ComputedRef<CSSProperties> = computed(() => {
     const style: CSSProperties = {}
 
-    if (props.height) {
+    if (props.height && props.size === 'custom') {
       style.height = props.height
     }
 
-    if (props.width) {
+    if (props.width && props.size === 'custom') {
       style.width = props.width
     }
 
