@@ -1,9 +1,5 @@
-import Slot from "./slot/Slot.vue"
-import Props from "./props/Props.vue"
-import Align from "./align/Align.vue"
+import Default from './default/Default.vue'
+import Slot from './slot/Slot.vue'
+import Align from './align/Align.vue'
 
-export {
-  Slot,
-  Props,
-  Align
-}
+export { Default, Slot, Align }

@@ -1,23 +1,30 @@
 <script lang="ts" setup>
 import { VsIcon } from '@vs/icon'
-import { icons } from '../data'
+import { ICONS } from '../data'
 import WidgetCodeView from '@widgets/CodeView/WidgetCodeView.vue'
 import type { Default } from '../types'
 
-const attributes: Default[] = [
+defineProps({
+  header: {
+    type: String,
+    default: '',
+  },
+})
+
+const ATTRIBUTES: Default[] = [
   {
     name: 'heart',
     width: '2rem',
     height: '2rem',
   },
-]
+] as const
 </script>
 
 <template>
-  <h2>Default</h2>
-  <widget-code-view component="icon" :attributes="attributes">
+  <h2>{{ header }}</h2>
+  <widget-code-view component="icon" :attributes="ATTRIBUTES">
     <div class="content">
-      <vs-icon :name="icons[0].name" :height="attributes[0].height" :width="attributes[0].width" />
+      <vs-icon :name="ICONS[0].name" :height="ATTRIBUTES[0].height" :width="ATTRIBUTES[0].width" />
     </div>
   </widget-code-view>
 </template>

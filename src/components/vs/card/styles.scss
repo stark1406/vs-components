@@ -1,0 +1,67 @@
+.vs-card {
+  background: var(--bg-white);
+  border: var(--card-border);
+  border-radius: 1rem;
+  padding: 2rem;
+
+  &__header {
+    margin-bottom: var(--spacing-2);
+  }
+
+  &__footer {
+    margin-top: var(--spacing-2);
+  }
+}
+
+.vs-title {
+  font-size: var(--font-size-large);
+  word-wrap: break-word;
+
+  &--center {
+    text-align: center;
+  }
+
+  &--right {
+    text-align: right;
+  }
+}
+
+.vs-subtitle {
+  font-size: var(--font-size-small);
+  opacity: 0.6;
+  word-wrap: break-word;
+  margin-top: var(--spacing-05);
+
+  &--center {
+    text-align: center;
+  }
+
+  &--right {
+    text-align: right;
+  }
+}
+
+.vs-text {
+  font-size: var(--font-size-medium);
+
+  &--center {
+    text-align: center;
+  }
+
+  &--right {
+    text-align: right;
+  }
+}
+
+.vs-footer {
+  font-size: var(--font-size-medium);
+  word-wrap: break-word;
+
+  &--center {
+    text-align: center;
+  }
+
+  &--right {
+    text-align: right;
+  }
+}

@@ -3,38 +3,38 @@ import { VsCard } from '@vs/card'
 import WidgetCodeView from '@widgets/CodeView/WidgetCodeView.vue'
 import { CardProps } from '../types'
 
-const textCard: string = 
-`Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+defineProps({
+  header: {
+    type: String,
+    default: '',
+  },
+})
+
+const TEXT_CARD: string = `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
 Commodi, ratione debitis quis est labore voluptatibus! 
 Eaque cupiditate minima, at placeat totam, magni doloremque veniam neque porro libero rerum unde voluptatem!`
 
-const attributes: CardProps[] = [
+const ATTRIBUTES: CardProps[] = [
   {
     title: 'Title',
     subtitle: 'Subtitle',
     text: '...',
     footer: 'Footer',
-    'max-width': '500px',
-  }
-]
+  },
+] as const
 </script>
 
 <template>
-  <h2>
-    Props
-  </h2>
-  <widget-code-view
-    component="card"
-    :attributes="attributes"
-  >
+  <h2>{{ header }}</h2>
+  <widget-code-view component="card" :attributes="ATTRIBUTES">
     <template #default>
       <div class="content">
         <vs-card
           title="Title"
           subtitle="Subtitle"
-          :text="textCard"
+          :text="TEXT_CARD"
           footer="Footer"
-          max-width="500px"
+          class="content__card"
         />
       </div>
     </template>
@@ -45,6 +45,9 @@ const attributes: CardProps[] = [
 .content {
   display: flex;
   justify-content: center;
-  min-width: 100%;
+
+  &__card {
+    width: 50%;
+  }
 }
 </style>

@@ -1,15 +1,15 @@
 import { PropType, defineComponent } from 'vue'
-import { Placement } from './types'
+import { Placement, Target } from './types'
 
 export const PopperContract = defineComponent({
   props: {
     visible: {
       type: Boolean,
       required: true,
-      default: false
+      default: false,
     },
     target: {
-      type: [Object, null] as PropType<HTMLElement | null>,
+      type: [Object, null] as PropType<Target>,
       required: true,
     },
     placement: {
@@ -18,10 +18,8 @@ export const PopperContract = defineComponent({
     },
     width: {
       type: String,
-      default: ''
-    }
+      default: 'fit-content',
+    },
   },
-  emits: [
-    'update:visible',
-  ]
+  emits: ['update:visible'],
 })

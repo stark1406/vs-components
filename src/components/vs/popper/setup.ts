@@ -1,21 +1,35 @@
-import { ref, onMounted, onBeforeUnmount, nextTick, watch } from 'vue'
-import { PopperStyle } from './types'
+import {
+  ref,
+  onMounted,
+  onBeforeUnmount,
+  nextTick,
+  watch,
+  SetupContext,
+  ComponentPublicInstance,
+} from 'vue'
+import type { PopperProps, Target } from './types'
+import { HALF, INDENTATION } from './constants'
 
-export function usePopper(props, ctx) {
+export function usePopper(props: PopperProps, ctx: SetupContext) {
   const isVisible = ref<boolean>(props.visible)
-  const popperStyle = ref<PopperStyle>({
-    position: 'absolute',
-    zIndex: 1500,
-    transform: '',
-    top: '0px',
-    left: '0px',
-  })
+  const transform = ref<string>('')
 
-  const indentation: number = 5
   const popperRef = ref<HTMLElement | null>(null)
 
+  function isVueComponent(target: unknown): target is ComponentPublicInstance {
+    return !!target && typeof target === 'object' && '$el' in target
+  }
+
+  function getTargetElement(target: Target): HTMLElement | null {
+    if (isVueComponent(target)) {
+      return target.$el
+    }
+
+    return target
+  }
+
   async function updatePopperPosition(): Promise<void> {
-    const targetElement = props.target.$el || props.target
+    const targetElement = getTargetElement(props.target)
     const popperElement = popperRef.value
 
     await nextTick()
@@ -28,73 +42,72 @@ export function usePopper(props, ctx) {
         case 'top':
           if (targetRect.top - popperRect.height < 0) {
             positionBottom(targetRect, popperRect)
-          } else {
-            positionTop(targetRect, popperRect)
+            return
           }
+          positionTop(targetRect, popperRect)
           break
-  
+
         case 'bottom':
           if (targetRect.top + targetRect.height + popperRect.height > window.innerHeight) {
             positionTop(targetRect, popperRect)
-          } else {
-            positionBottom(targetRect, popperRect)
+            return
           }
+          positionBottom(targetRect, popperRect)
           break
-  
+
         case 'left':
           if (targetRect.left - popperRect.width < 0) {
             positionRight(targetRect, popperRect)
-          } else {
-            positionLeft(targetRect, popperRect)
+            return
           }
+          positionLeft(targetRect, popperRect)
           break
-  
+
         case 'right':
           if (targetRect.left + targetRect.width + popperRect.width > window.innerWidth) {
             positionLeft(targetRect, popperRect)
-          } else {
-            positionRight(targetRect, popperRect)
+            return
           }
+          positionRight(targetRect, popperRect)
           break
       }
-
     }
   }
 
   function positionTop(targetRect: DOMRect, popperRect: DOMRect): void {
-    const tx: number = targetRect.left + targetRect.width / 2 - popperRect.width / 2
-    const ty: number = targetRect.top - popperRect.height - indentation
+    const tx: number = targetRect.left + targetRect.width / HALF - popperRect.width / HALF
+    const ty: number = targetRect.top - popperRect.height - INDENTATION
 
     setTranslate(tx, ty)
   }
 
   function positionBottom(targetRect: DOMRect, popperRect: DOMRect): void {
-    const tx: number = targetRect.left + targetRect.width / 2 - popperRect.width / 2
-    const ty: number = targetRect.top + targetRect.height + indentation
+    const tx: number = targetRect.left + targetRect.width / HALF - popperRect.width / HALF
+    const ty: number = targetRect.top + targetRect.height + INDENTATION
 
     setTranslate(tx, ty)
   }
 
   function positionRight(targetRect: DOMRect, popperRect: DOMRect): void {
-    const tx: number = targetRect.left + targetRect.width + indentation
-    const ty: number = targetRect.top + targetRect.height / 2 - popperRect.height / 2
+    const tx: number = targetRect.left + targetRect.width + INDENTATION
+    const ty: number = targetRect.top + targetRect.height / HALF - popperRect.height / HALF
 
     setTranslate(tx, ty)
   }
 
   function positionLeft(targetRect: DOMRect, popperRect: DOMRect): void {
-    const tx: number = targetRect.left - popperRect.width - indentation
-    const ty: number = targetRect.top + targetRect.height / 2 - popperRect.height / 2
+    const tx: number = targetRect.left - popperRect.width - INDENTATION
+    const ty: number = targetRect.top + targetRect.height / HALF - popperRect.height / HALF
 
     setTranslate(tx, ty)
   }
 
   function setTranslate(tx: number, ty: number): void {
-    popperStyle.value.transform = `translate(${tx}px, ${ty}px)`
+    transform.value = `translate(${tx}px, ${ty}px)`
   }
-  
-  async function handleOutsideClick(event: MouseEvent): void {
-    const targetElement = props.target.$el || props.target
+
+  async function handleOutsideClick(event: MouseEvent): Promise<void> {
+    const targetElement = getTargetElement(props.target)
     const popperElement = popperRef.value
 
     await nextTick()
@@ -119,16 +132,19 @@ export function usePopper(props, ctx) {
     document.removeEventListener('click', handleOutsideClick)
   })
 
-  watch(() => props.visible, async (newVisible) => {
-    isVisible.value = newVisible
-    if (newVisible) {
-      updatePopperPosition()
-    }
-  })
+  watch(
+    () => props.visible,
+    async (newVisible) => {
+      isVisible.value = newVisible
+      if (newVisible) {
+        updatePopperPosition()
+      }
+    },
+  )
 
   return {
     popperRef,
-    popperStyle,
+    transform,
     isVisible,
   }
 }

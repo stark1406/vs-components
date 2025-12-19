@@ -3,7 +3,14 @@ import { VsButton } from '@vs/button'
 import WidgetCodeView from '@widgets/CodeView/WidgetCodeView.vue'
 import type { Colors } from '../types'
 
-const attributes: Colors[] = [
+defineProps({
+  header: {
+    type: String,
+    default: '',
+  },
+})
+
+const ATTRIBUTES: Colors[] = [
   {
     label: 'Primary',
     color: 'primary',
@@ -28,14 +35,14 @@ const attributes: Colors[] = [
     label: 'Danger',
     color: 'danger',
   },
-]
+] as const
 </script>
 
 <template>
-  <h2>Colors</h2>
-  <widget-code-view component="button" :attributes>
+  <h2>{{ header }}</h2>
+  <widget-code-view component="button" :attributes="ATTRIBUTES">
     <div class="content">
-      <div v-for="(items, index) in attributes" :key="index">
+      <div v-for="(items, index) in ATTRIBUTES" :key="index">
         <vs-button :label="items.label" :color="items.color" />
       </div>
     </div>

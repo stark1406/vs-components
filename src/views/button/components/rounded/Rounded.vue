@@ -3,7 +3,14 @@ import { VsButton } from '@vs/button'
 import type { Rounded } from '../types'
 import WidgetCodeView from '@widgets/CodeView/WidgetCodeView.vue'
 
-const attributes: Rounded[] = [
+defineProps({
+  header: {
+    type: String,
+    default: '',
+  },
+})
+
+const ATTRIBUTES: Rounded[] = [
   {
     label: 'Primary',
     color: 'primary',
@@ -34,14 +41,14 @@ const attributes: Rounded[] = [
     color: 'danger',
     'is-rounded': true,
   },
-]
+] as const
 </script>
 
 <template>
-  <h2>Rounded</h2>
-  <widget-code-view component="button" :attributes>
+  <h2>{{ header }}</h2>
+  <widget-code-view component="button" :attributes="ATTRIBUTES">
     <div class="content">
-      <div v-for="(items, index) in attributes" :key="index">
+      <div v-for="(items, index) in ATTRIBUTES" :key="index">
         <vs-button :label="items.label" :color="items.color" :is-rounded="items['is-rounded']" />
       </div>
     </div>

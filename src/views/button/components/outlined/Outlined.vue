@@ -3,7 +3,14 @@ import { VsButton } from '@vs/button'
 import WidgetCodeView from '@widgets/CodeView/WidgetCodeView.vue'
 import type { Outlined } from '../types'
 
-const attributes: Outlined[] = [
+defineProps({
+  header: {
+    type: String,
+    default: '',
+  },
+})
+
+const ATTRIBUTES: Outlined[] = [
   {
     label: 'Primary',
     color: 'primary',
@@ -34,14 +41,14 @@ const attributes: Outlined[] = [
     color: 'danger',
     'is-outlined': true,
   },
-]
+] as const
 </script>
 
 <template>
-  <h2>Outlined</h2>
-  <widget-code-view component="button" :attributes>
+  <h2>{{ header }}</h2>
+  <widget-code-view component="button" :attributes="ATTRIBUTES">
     <div class="content">
-      <div v-for="(items, ind) in attributes" :key="ind">
+      <div v-for="(items, index) in ATTRIBUTES" :key="index">
         <vs-button :label="items.label" :color="items.color" :is-outlined="items['is-outlined']" />
       </div>
     </div>

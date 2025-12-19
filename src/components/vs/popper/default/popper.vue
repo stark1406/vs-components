@@ -2,11 +2,12 @@
 import { defineComponent } from 'vue'
 import { PopperContract } from '../contract'
 import { usePopper } from '../setup'
+import type { PopperProps } from '../types'
 
 export default defineComponent({
   name: 'VsPopper',
   extends: PopperContract,
-  setup(props, ctx) {
+  setup(props: PopperProps, ctx) {
     return usePopper(props, ctx)
   },
 })
@@ -18,8 +19,8 @@ export default defineComponent({
     ref="popperRef"
     class="vs-popper"
     :style="{
-      ...popperStyle,
-      width: width
+      transform,
+      width,
     }"
   >
     <Transition>
@@ -28,20 +29,4 @@ export default defineComponent({
   </div>
 </template>
 
-<style lang="scss" scoped>
-.vs-popper {
-  background-color: #fff;
-  border: 1px solid #ccc;
-  border-radius: 7px;
-}
-
-.v-enter-active,
-.v-leave-active {
-  transition: opacity 0.6s ease;
-}
-
-.v-enter-from,
-.v-leave-to {
-  opacity: 0;
-}
-</style>
+<style lang="scss" scoped src="../styles.scss"></style>

@@ -7,6 +7,7 @@
   --danger: #ff647c;
 
   --bg-dark: #1e1e1e;
+  --bg-white: #ffffff;
 
   // hover
   --primary-hover: #a5affb;
@@ -16,12 +17,17 @@
   --warning-hover: #ffc7a6;
   --danger-hover: #fdaf88;
 
-  --surface-card: #ffffff;
   --card-border: 1px solid #dfe7ef;
 
   // font weights
   --regular: 400;
   --semibold: 600;
+
+  // font size
+  --font-size-xsmall: 0.75rem;
+  --font-size-small: 0.875rem;
+  --font-size-medium: 1rem;
+  --font-size-large: 1.25rem;
 
   // spacing
   --spacing-05: 0.25rem;

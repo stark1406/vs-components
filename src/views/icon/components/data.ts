@@ -1,6 +1,6 @@
-import type { Icons } from "./types"
+import type { Icons } from './types'
 
-export const icons: Icons[] = [
+export const ICONS: Icons[] = [
   {
     name: 'heart',
     text: 'heart',

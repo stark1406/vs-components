@@ -1,54 +1,39 @@
-import { defineComponent } from 'vue'
+import { defineComponent, PropType } from 'vue'
+import { Align } from './types'
 
 export const CardContract = defineComponent({
   props: {
     title: {
       type: String,
-      default: undefined
+      default: '',
     },
     subtitle: {
       type: String,
-      default: undefined
+      default: '',
     },
     text: {
       type: String,
-      default: undefined
+      default: '',
     },
     footer: {
       type: String,
-      default: undefined
+      default: '',
     },
-    isAlignCenter: {
-      type: Boolean,
-      default: false
+    alignTitle: {
+      type: String as PropType<Align>,
+      default: 'none',
     },
-    isAlignRight: {
-      type: Boolean,
-      default: false
+    alignSubtitle: {
+      type: String as PropType<Align>,
+      default: 'none',
     },
-    height: {
-      type: String,
-      default: undefined
+    alignText: {
+      type: String as PropType<Align>,
+      default: 'none',
     },
-    maxHeight: {
-      type: String,
-      default: undefined
+    alignFooter: {
+      type: String as PropType<Align>,
+      default: 'none',
     },
-    minHeight: {
-      type: String,
-      default: undefined
-    },
-    width: {
-      type: String,
-      default: undefined
-    },
-    maxWidth: {
-      type: String,
-      default: undefined
-    },
-    minWidth: {
-      type: String,
-      default: undefined
-    }
   },
 })

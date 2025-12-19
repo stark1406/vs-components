@@ -1,14 +1,21 @@
 <script lang="ts" setup>
 import { VsIcon } from '@vs/icon'
 import { VsCard } from '@vs/card'
-import { icons } from '../data'
+import { ICONS } from '../data'
+
+defineProps({
+  header: {
+    type: String,
+    default: '',
+  },
+})
 </script>
 
 <template>
-  <h2>Variants</h2>
+  <h2>{{ header }}</h2>
   <vs-card>
     <div class="content">
-      <div v-for="(item, index) in icons" :key="index" class="content__row">
+      <div v-for="(item, index) in ICONS" :key="index" class="content__row">
         <vs-icon :name="item.name" height="2rem" width="2rem" />
         {{ item.text }}
       </div>
